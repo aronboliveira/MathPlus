@@ -1,0 +1,32 @@
+{
+  "name": "mathplus",
+  "version": "1.0.0",
+  "description": "Basic interface for calculating math formulas",
+  "main": "MathPlus.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aronboliveira/MathPlus.git"
+  },
+  "keywords": [
+    "math",
+    "statistics",
+    "data",
+    "analysis"
+  ],
+  "author": "Aron Barbosa de Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aronboliveira/MathPlus/issues"
+  },
+  "homepage": "https://github.com/aronboliveira/MathPlus#readme",
+  "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.13",
+    "sass": "^1.74.1",
+    "typescript": "^5.4.3"
+  }
+}

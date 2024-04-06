@@ -1,4 +1,13 @@
 export class Combinator {
+  static shuffle(ar: any[], rep: boolean = false): Array<any> | Set<any> {
+    const copyAr = ar.slice();
+    const shuffled = rep ? [] : new Set();
+    while (copyAr.length > 0) {
+      const re = copyAr.splice(Math.floor(Math.random() * copyAr.length), 1)[0];
+      rep ? (shuffled as Array<any>).push(re) : (shuffled as Set<any>).add(re);
+    }
+    return shuffled;
+  }
   static factorial(n: number): number {
     return n === 0 || n === 1 ? 1 : n * this.factorial(n - 1);
   }

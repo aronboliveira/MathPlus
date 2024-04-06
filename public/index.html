@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="../src/style.css" rel="stylesheet" />
+    <link rel="icon" href="../img/bar-chart-line-fill.svg" />
+    <title>Calculadora</title>
+  </head>
+  <body>
+    <main>
+      <section>
+        <div>
+          <div id="divEntry">
+            <div class="divInp">
+              <label id="valuesLab" for="gValuesInp"
+                ><strong
+                  >Insira os valores numéricos para cálculos gerais</strong
+                >
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Somente valores numéricos, espaçados"
+                id="gValuesInp"
+              />
+              <label id="valuesLab" for="gValuesInp"
+                ><strong
+                  >Insira o segundo conjunto para cálculos de Pearson</strong
+                >
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Somente valores numéricos, espaçados"
+                id="sValuesInp"
+              />
+            </div>
+            <div class="divInp">
+              <label id="valuesLab" for="tValuesInp"
+                ><strong
+                  >Insira o conjunto total de valores para cálculo de
+                  probabilidade:</strong
+                >
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Somente valores espaçados"
+                id="tValuesInp"
+              />
+              <label id="valuesLab" for="pValuesInp"
+                ><strong
+                  >Insira os valores para cálculo de probabilidade:</strong
+                >
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Somente espaçados"
+                id="pValuesInp"
+              />
+            </div>
+          </div>
+          <button class="btn btn-info" id="btnCalcValues">
+            Calcular valores
+          </button>
+          <div id="resultsGrid">
+            <div id="divResults1">
+              <div class="divResult">
+                <label class="labResult" for="average">Média Arimética</label>
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="average"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="averageHarm"
+                  >Média Harmônica</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="averageHarm"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="averageGeo"
+                  >Média Geométrica</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="averageGeo"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="median">Mediana</label>
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="median"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="mode">Moda</label>
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="mode"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="variance"
+                  >Variância Aritmética</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="variance"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="varianceGeo"
+                  >Variância Geométrica</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="varianceGeo"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="stdDev"
+                  >Desvio-padrão Aritmético</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="stdDev"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="stdDevGeo"
+                  >Desvio-padrão Geométrico</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="stdDevGeo"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="cVar"
+                  >Coeficiente de Variação</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="cVar"
+                />
+              </div>
+            </div>
+            <div id="divResults2">
+              <div class="divResult">
+                <label class="labResult" for="q1">Primeiro Quartil</label>
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="q1"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="q1i"
+                  >Índice do Primeiro Quartil</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="q1i"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="q2">Segundo Quartil</label>
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="q2"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="q2i"
+                  >Índice do Segundo Quartil</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="q2i"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="q3">Terceiro Quartil</label>
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="q3"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="q3i"
+                  >Índice do Terceiro Quartil</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="q3i"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="iqr"
+                  >Intervalo entre Quartis</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="iqr"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="lowWhisk">Whisker Inferior</label>
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="lowWhisk"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="upWhisk">Whiskper Superior</label>
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="upWhisk"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="curtosis">Curtose</label>
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="curtosis"
+                />
+              </div>
+            </div>
+            <div id="divResults3">
+              <div class="divResult">
+                <label class="labResult" for="lowOl"
+                  >Outliers inferiores:</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="lowOl"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="upOl">Outliers Superiores:</label>
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="upOl"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="pearsonAssymetryIndex"
+                  >Índice de Assimetria de Pearson:</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="pearsonAssymetryIndex"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="testPearsonIndex"
+                  >Resultado do teste de Pearson:</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="testPearsonIndex"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="pearsonCorrelationIndex"
+                  >Índice de Correlação de Pearson:</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="pearsonCorrelationIndex"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="probSimple"
+                  >Probabilidade Simples dos Eventos:</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="probSimple"
+                />
+              </div>
+              <div class="divResult">
+                <label class="labResult" for="probCond"
+                  >Probabilidade Condicional Independente dos Eventos:</label
+                >
+                <output
+                  type="number"
+                  class="form-control result-output"
+                  id="probCond"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="reactRoot"></section>
+    </main>
+  </body>
+  <script type="module" src="../dist/src/front.js"></script>
+  <script
+    async
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+</html>
