@@ -28,8 +28,8 @@ button,
 #divEntry {
   display: grid;
   width: 50vw;
-  grid-template-columns: repeat(2, 25vw);
-  white-space: nowrap;
+  grid-template-columns: repeat(2, 30vw);
+  white-space: normal;
   column-gap: 3vw;
   margin-top: 2vh;
 }
