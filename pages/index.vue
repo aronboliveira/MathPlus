@@ -1,9 +1,9 @@
 <script lang="ts">
   import Vue from "vue";
-  import defHydrateFront from "../components/componentsScript/index.ts";
   import IndexScript from "../components/componentsScripts/index.ts";
   import CalcInp from "../components/CalcInp.vue";
   import CalcRes from "../components/CalcRes.vue";
+  import Header from "../components/Header.vue";
   export default Vue.extend({
     name: "IndexPage",
     mounted() {
@@ -22,19 +22,23 @@
             <CalcInp
               labTxt="Insira os valores numéricos para cálculos gerais"
               inpId="gValuesInp"
-              inpPh="Somente valores numéricos, espaçados" />
+              inpPh="Somente valores numéricos, espaçados"
+            />
             <CalcInp
               labTxt="Insira o segundo conjunto para cálculos de Pearson"
               inpId="sValuesInp"
-              inpPh="Somente valores numéricos, espaçados" />
+              inpPh="Somente valores numéricos, espaçados"
+            />
             <CalcInp
               labTxt="Insira o conjunto total de valores para cálculo de probabilidade"
               inpId="tValuesInp"
-              inpPh="Somente valores espaçados" />
+              inpPh="Somente valores espaçados"
+            />
             <CalcInp
               labTxt="Insira os valores para cálculo de probabilidade"
               inpId="pValuesInp"
-              inpPh="Somente espaçados" />
+              inpPh="Somente espaçados"
+            />
           </div>
           <button class="btn btn-info" id="btnCalcValues">
             Calcular valores
@@ -69,19 +73,24 @@
               <CalcRes labTxt="Outliers Superiores:" outpId="upOl" />
               <CalcRes
                 labTxt="Índice de Assimetria de Pearson:"
-                outpId="pearsonAssymetryIndex" />
+                outpId="pearsonAssymetryIndex"
+              />
               <CalcRes
                 labTxt="Resultado do teste de Pearson:"
-                outpId="testPearsonIndex" />
+                outpId="testPearsonIndex"
+              />
               <CalcRes
                 labTxt="Índice de Correlação de Pearson:"
-                outpId="pearsonCorrelationIndex" />
+                outpId="pearsonCorrelationIndex"
+              />
               <CalcRes
                 labTxt="Probabilidade Simples dos Eventos:"
-                outpId="probSimple" />
+                outpId="probSimple"
+              />
               <CalcRes
                 labTxt="Probabilidade Condicional Independente dos Eventos:"
-                outpId="probCond" />
+                outpId="probCond"
+              />
             </div>
           </div>
         </div>

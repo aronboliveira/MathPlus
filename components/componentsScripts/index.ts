@@ -1,6 +1,6 @@
-import {cyclePhase} from "~/lib/declarations/types";
-import defHydrateFront from "~/lib/front";
-import {initFillAttrs, watchLabels} from "~/lib/handlers/handlersModel";
+import { cyclePhase } from "../../lib/declarations/types";
+import defHydrateFront from "../../lib/front";
+import { initFillAttrs, watchLabels } from "../../lib/handlers/handlersModel";
 export default function IndexScript(phase: cyclePhase) {
   switch (phase) {
     case "mounted":

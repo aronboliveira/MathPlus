@@ -5,36 +5,8 @@
 </style>
 
 <script lang="ts">
-  import {defineComponent} from "vue";
-  import Inp from "../components/componentsScripts/Inp.ts";
-  export default defineComponent(
-    new Inp("CalcInp", {
-      labTxt: {
-        type: String,
-        required: true,
-      },
-      inpId: {
-        type: String,
-        required: true,
-      },
-      labCls: {
-        type: String,
-        default: "labResult",
-      },
-      inpT: {
-        type: String,
-        default: "text",
-      },
-      inpCls: {
-        type: String,
-        default: "form-control",
-      },
-      inpPh: {
-        type: String,
-        default: "",
-      },
-    }),
-  );
+  import CalcInp from "../components/componentsScripts/CalcInp.ts";
+  export default CalcInp;
 </script>
 
 <template>

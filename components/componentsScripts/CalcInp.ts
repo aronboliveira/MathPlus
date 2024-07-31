@@ -1,14 +1,13 @@
 import { defineComponent } from "vue";
-
-export const CalcRes = (() =>
+export const CalcInp = (() =>
   defineComponent({
-    name: "CalcRes",
+    name: "CalcInp",
     props: {
       labTxt: {
         type: String,
         required: true,
       },
-      outpId: {
+      inpId: {
         type: String,
         required: true,
       },
@@ -16,17 +15,21 @@ export const CalcRes = (() =>
         type: String,
         default: "labResult",
       },
-      outpT: {
+      inpT: {
         type: String,
-        default: "number",
+        default: "text",
       },
-      outpCls: {
+      inpCls: {
         type: String,
-        default: "form-control result-output",
+        default: "form-control",
+      },
+      inpPh: {
+        type: String,
+        default: "",
       },
     },
     mounted() {
-      console.log("Output mounted");
+      console.log("Input mounted");
     },
   }))();
-export default CalcRes;
+export default CalcInp;
