@@ -4,14 +4,20 @@
 </script>
 
 <template>
-  <header id="mainHeader">
-    <StackedAccordion />
+  <header id="mainHeader" data-parent="parent-accordion-oprt-types">
     <button class="biBtn">
       <span>Login</span>
     </button>
     <button class="biBtn">
       <span>Sobre &amp; Autores</span>
     </button>
+    <StackedAccordion v-model="shouldShowAccordion" baseId="oprt-types" />
+    <!-- boolean returned as reactive, by ref() -->
+    <AccordionList
+      baseId="oprt-types"
+      :n_i="1"
+      :shouldShowAccordion="shouldShowAccordion"
+    />
   </header>
 </template>
 
