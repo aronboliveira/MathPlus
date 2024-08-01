@@ -20,7 +20,7 @@
           class="accordion-button btn"
           :key="'accordion-btn__' + i"
           :id="'accordion-button-' + baseId + i"
-          @click="routeToOprtGrp(i)"
+          @click="routeToOprtGrp($event.currentTarget)"
         >
           {{ i }}
         </button>

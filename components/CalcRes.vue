@@ -5,7 +5,7 @@
 </style>
 
 <script lang="ts">
-  import CalcRes from "../components/componentsScripts/Outp.ts";
+  import CalcRes from "../components/componentsScripts/CalcRes.ts";
   export default CalcRes;
 </script>
 

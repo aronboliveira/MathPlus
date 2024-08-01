@@ -9,36 +9,35 @@
       <span>Login</span>
     </button>
     <button class="biBtn">
-      <span>Sobre &amp; Autores</span>
+      <span>MATH PLUS</span>
     </button>
     <StackedAccordion
       v-model="shouldShowAccordion"
       baseId="oprt-types"
       icon="bi"
     />
-    <!-- boolean returned as reactive, by ref() -->
     <AccordionList
       baseId="oprt-types"
       :n_i="[
         'Algebra',
-        'Estatística',
-        'Probabilidade',
-        'Trigonometria',
-        'Geometria',
-        'Cálculo',
+        'Statistics',
+        'Probability',
+        'Combinatorics',
+        'Trigonometry',
+        'Geometry',
       ]"
       :shouldShowAccordion="shouldShowAccordion"
     />
-    <div id="dlg-header-root">
+    <div id="dlg-header-root" data-target="login-modal">
       <dialog
         v-if="shouldShowLogin"
         id="login-modal"
         class="modal-content"
         ref="modal"
-        data-target="login-modal"
+        @click="onIsClickOutside($event, modal)"
       >
         <p>Dialog montado</p>
-        <button class="btn btn-close" @click="toggleLogin">Close</button>
+        <button class="btn btn-close" @click="toggleLogin"></button>
       </dialog>
     </div>
   </header>
@@ -64,9 +63,6 @@
     padding-block: 0.3rem;
     position: sticky;
     top: 0;
-  }
-  header dialog {
-    transform: translate(1vw, 8.9rem);
   }
   header .biBtn {
     color: rgba(223, 221, 221, 0.745);

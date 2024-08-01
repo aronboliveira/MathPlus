@@ -1,4 +1,4 @@
-export const algebraTitles = [
+export const titlesAlgebra = [
   "Quadratic formula",
   "Cubic Formula",
   "Discriminant",
@@ -8,7 +8,7 @@ export const algebraTitles = [
   "Polynominal Roots",
   "Logarithm Properties",
 ];
-export const statisticsTitles = [
+export const titlesStatistics = [
   "Arithmetic Mean",
   "Harmonic Mean",
   "Geometric Mean",
@@ -39,7 +39,7 @@ export const statisticsTitles = [
   "Person's Correlation Test",
   "Pearson's Test",
 ];
-export const probabilityTitles = [
+export const titlesProbability = [
   "Simple Probability",
   "Addition Rule",
   "Multiplication Rule",
@@ -48,7 +48,7 @@ export const probabilityTitles = [
   "Binominal Distribution",
   "Poisson Distribution",
 ];
-export const combinatoricsTitles = [
+export const titlesCombinatorics = [
   "Factorial",
   "Permutation without Repetition",
   "Permutation of Multisets",
@@ -59,7 +59,7 @@ export const combinatoricsTitles = [
   "Inclusion-Exclusion Principle",
   "Pascal Triangle",
 ];
-export const trigonometryTitles = [
+export const titlesTrigonometry = [
   "Pythagorean Identity",
   "Sine Rule",
   "Cosine Rule",
@@ -71,3 +71,4 @@ export const trigonometryTitles = [
   "Law of Sines",
   "Law of Cosines",
 ];
+export const titlesGeometry = ["Square Area", "Square Volume"];

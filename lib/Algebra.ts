@@ -1,11 +1,15 @@
 export class Algebra {
-  static factorial(n: number): number {
+  static factorial(n: number = 0): number {
     return n === 0 || n === 1 ? 1 : n * this.factorial(n - 1);
   }
-  static linearEquation(a: number, b: number): number {
+  static linearEquation(a: number = 0, b: number = 0): number {
     return -(b / a);
   }
-  static quadraticEquation(a: number, b: number, c: number): number {
+  static quadraticEquation(
+    a: number = 0,
+    b: number = 0,
+    c: number = 0,
+  ): number {
     return (
       (-b +
         Math.sign(b ** 2 - 4 * a * c) *
@@ -14,18 +18,23 @@ export class Algebra {
     );
   }
   static cubicEquation(
-    a: number,
-    b: number,
-    c: number,
-    d: number,
-    x: number
+    a: number = 0,
+    b: number = 0,
+    c: number = 0,
+    d: number = 0,
+    x: number = 0,
   ): number {
     return a * x ** 3 + b * x ** 2 + c * x ** 1 + d;
   }
-  static diffSquares(a: number, b: number): number {
+  static diffSquares(a: number = 0, b: number = 0): number {
     return Math.sqrt((a + b) * (a - b) + b ** 2);
   }
-  static binm(a: number, b: number, n: number, subtr: boolean = false): number {
+  static binm(
+    a: number = 0,
+    b: number = 0,
+    n: number = 0,
+    subtr: boolean = false,
+  ): number {
     const nInt = n - 1;
     let op = 1,
       result = a ** n + b ** n,

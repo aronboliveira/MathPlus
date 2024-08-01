@@ -5,6 +5,40 @@
   --primar-wh: #ffffffba;
 }
 
+@keyframes dropIn {
+  0% {
+    top: -45%;
+  }
+  50% {
+    top: 0%;
+  }
+  100% {
+    top: 5%;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes highlight {
+  0% {
+    filter: contrast(100%);
+    opacity: 1;
+  }
+  50% {
+    filter: contrast(80%);
+    opacity: 0.5;
+  }
+  100% {
+    filter: contrast(100%);
+    opacity: 1;
+  }
+}
+
 *,
 *::after,
 *::before {
@@ -28,6 +62,11 @@ dialog.modal-content {
   position: relative;
   width: 85vw;
   z-index: 900;
+  animation: dropIn 0.3s ease-out forwards, fadeIn 0.6s ease-in-out forwards;
+}
+
+.modal-content form {
+  animation: fadeIn 2s ease-in-out;
 }
 
 .modal-content::backdrop {
