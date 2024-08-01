@@ -1,9 +1,10 @@
 <script lang="ts">
   import Vue from "vue";
-  import IndexScript from "../components/componentsScripts/index.ts";
+  import { IndexScript } from "../components/componentsScripts/index.ts";
   import CalcInp from "../components/CalcInp.vue";
   import CalcRes from "../components/CalcRes.vue";
   import Header from "../components/Header.vue";
+  import ref from "vue";
   export default Vue.extend({
     name: "IndexPage",
     mounted() {
@@ -13,7 +14,7 @@
 </script>
 
 <template>
-  <div id="indexRoot">
+  <div id="index-root">
     <Header />
     <main>
       <section>
@@ -97,5 +98,12 @@
       </section>
       <section id="reactRoot"></section>
     </main>
+    <div id="dlg-root"></div>
   </div>
 </template>
+
+<style scoped>
+  #index-root {
+    position: relative;
+  }
+</style>

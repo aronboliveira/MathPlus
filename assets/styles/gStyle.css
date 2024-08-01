@@ -15,6 +15,25 @@ body {
   background: var(--primary-bl);
 }
 
+dialog.modal-content {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.6rem #000;
+  display: flex;
+  flex-flow: column nowrap;
+  height: max-content;
+  left: 5%;
+  padding-block: calc(0.5rem + 2%);
+  padding-inline: 2%;
+  position: relative;
+  width: 85vw;
+  z-index: 900;
+}
+
+.modal-content::backdrop {
+  background-color: rgba(0, 0, 0, 0.5019607843);
+}
+
 section {
   padding: 2%;
   display: flex;
@@ -40,7 +59,8 @@ ol,
 menu,
 dl {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
+  margin: 0;
 }
 
 button,

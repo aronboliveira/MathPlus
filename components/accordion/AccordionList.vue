@@ -7,6 +7,7 @@
     class="accordion-nav accordion-container"
     :id="'accordion-nav-' + baseId"
     :data-target="'accordion-' + baseId"
+    ref="nav"
   >
     <ul class="accordion-list" :id="'accordion-list-' + baseId">
       <li
@@ -16,11 +17,12 @@
         :id="'accordion-item-' + baseId + i"
       >
         <button
-          class="accordion-button"
+          class="accordion-button btn"
           :key="'accordion-btn__' + i"
           :id="'accordion-button-' + baseId + i"
+          @click="routeToOprtGrp(i)"
         >
-          Categoria {{ i }}
+          {{ i }}
         </button>
       </li>
     </ul>
@@ -36,19 +38,19 @@
     max-width: 75vw;
     height: -moz-fit-content;
     height: fit-content;
-    padding: 3vw 0.5vw 0.2vw 3vw;
+    padding: 1rem 0 0 1rem;
     gap: 1vh;
     position: absolute;
-    top: 4rem;
+    top: 3.05rem;
     right: 0;
     bottom: -0.625rem;
     box-sizing: border-box;
     background-color: #242527;
-    transition: transform 0.4s ease;
     z-index: 99;
     overflow-y: auto;
     overflow-x: auto;
     transform: translateX(100%);
+    transition: transform 0.4s ease;
   }
   .accordion-nav.shown {
     transform: translateX(0%);

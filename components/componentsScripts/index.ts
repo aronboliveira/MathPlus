@@ -1,7 +1,16 @@
+import Vue from "vue";
 import { cyclePhase } from "../../lib/declarations/types";
 import defHydrateFront from "../../lib/front";
 import { initFillAttrs, watchLabels } from "../../lib/handlers/handlersModel";
-export default function IndexScript(phase: cyclePhase) {
+export const Index = (function () {
+  Vue.extend({
+    name: "IndexPage",
+    mounted() {
+      IndexScript("mounted");
+    },
+  });
+})();
+export function IndexScript(phase: cyclePhase) {
   switch (phase) {
     case "mounted":
       defHydrateFront();
@@ -14,3 +23,4 @@ export default function IndexScript(phase: cyclePhase) {
       );
   }
 }
+export default Index;

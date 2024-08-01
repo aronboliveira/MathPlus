@@ -1,4 +1,4 @@
-import {PropField} from "../declarations/interfaces";
+import { PropField } from "../declarations/interfaces";
 import {
   inpTypes,
   langSizeableNode,
@@ -16,8 +16,8 @@ import {
   stringError,
   typeError,
 } from "./handlersErrors";
-import {parseFinite} from "./handlersMath";
-import {formatForBst} from "./handlersStyles";
+import { parseFinite } from "./handlersMath";
+import { formatForBst } from "./handlersStyles";
 
 export function validateAsInp(
   inp: HTMLInputElement | PropField<string | String>,
@@ -112,9 +112,9 @@ export function normalizeReadText(
     }
     formatText = formatText.replaceAll("_", " ").replaceAll(/-(?!bin)/gi, ", ");
     let safeAcc = 0;
-    while (/[a-z][A-Z]/g.test(formatText)) {
+    while (/[a-z]/gi.test(formatText)) {
       safeAcc++;
-      let idx = /[a-z][A-Z]/g.exec(formatText)?.index ?? 0;
+      let idx = /[a-z]/gi.exec(formatText)?.index ?? 0;
       if (idx) {
         idx = ++idx;
         formatText = `${formatText.slice(0, idx)} ${formatText.slice(idx)}`;
@@ -201,6 +201,73 @@ export function normalizeSpacing(value: string): string {
   } catch (e) {
     console.error(`Error executing normalizeSpacing:\n${(e as Error).message}`);
     return value;
+  }
+}
+
+export function camelToKebab(str: string): string {
+  const iniStr = str;
+  try {
+    return str
+      .split(/(?=[A-Z])/g)
+      .join("-")
+      .toLowerCase();
+  } catch (e) {
+    console.error(`Error executing camelToKebab:\n${(e as Error).message}`);
+    return iniStr;
+  }
+}
+
+export function kebabToCamel(str: string): string {
+  const iniStr = str;
+  try {
+    return str
+      .split("-")
+      .map((fragment, i) =>
+        i === 0 ? fragment : textTransformPascal(fragment),
+      )
+      .join("");
+  } catch (e) {
+    console.error(`Error executing camelToKebab:\n${(e as Error).message}`);
+    return iniStr;
+  }
+}
+
+export function normalizeAccents(
+  str: string,
+  insensitive: boolean = true,
+): string {
+  try {
+    if (typeof str !== "string")
+      throw typeError(str, `Validation of str argument for normalizeAccents`, [
+        "string",
+      ]);
+    if (typeof insensitive !== "boolean")
+      throw typeError(
+        insensitive,
+        `Validation of insensitive argument for normalizeAccents`,
+        ["boolean"],
+      );
+    return insensitive
+      ? str
+          .replaceAll(/[àáäâã]/gi, "a")
+          .replaceAll(/[èéêë]/gi, "e")
+          .replaceAll(/[ìíïî]/gi, "i")
+          .replaceAll(/[òóôöõ]/gi, "o")
+          .replaceAll(/[ùúüû]/gi, "u")
+      : str
+          .replaceAll(/[àáäâã]/g, "a")
+          .replaceAll(/[ÀÁÄÂÃ]/g, "A")
+          .replaceAll(/[èéêë]/g, "e")
+          .replaceAll(/[ÈÉÊË]/g, "E")
+          .replaceAll(/[ìíïî]/g, "i")
+          .replaceAll(/[ÌÍÏÎ]/g, "I")
+          .replaceAll(/[òóôöõ]/g, "o")
+          .replaceAll(/[ÒÓÔÖÕ]/, "O")
+          .replaceAll(/[ùúüû]/g, "u")
+          .replaceAll(/[ÙÚÜÛ]/g, "U");
+  } catch (e) {
+    console.error(`Error executing normalizeAccents:\n${(e as Error).message}`);
+    return str;
   }
 }
 

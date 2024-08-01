@@ -8,9 +8,10 @@
     class="accordion-btn-toggle"
     @click="toggleAccordion($event)"
     :data-src="'accordion-' + baseId"
+    :id="'accordion-' + baseId + '-btn-toggle'"
   >
     <!-- value returned as a method, managing the model value (as .value) with $emit -->
-    <span>
+    <span :id="'accordion-' + baseId + icon" ref="icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -29,6 +30,12 @@
 </template>
 
 <style scoped>
-  .accordion-btn-toggle {
+  .accordion-btn-toggle:focus,
+  .accordion-btn-toggle svg:focus,
+  .accordion-btn-toggle *:focus {
+    outline: none;
+  }
+  .accordion-btn-toggle svg {
+    filter: invert(1);
   }
 </style>

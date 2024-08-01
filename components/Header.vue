@@ -5,19 +5,42 @@
 
 <template>
   <header id="mainHeader" data-parent="parent-accordion-oprt-types">
-    <button class="biBtn">
+    <button class="biBtn" data-src="login-modal" @click="toggleLogin($event)">
       <span>Login</span>
     </button>
     <button class="biBtn">
       <span>Sobre &amp; Autores</span>
     </button>
-    <StackedAccordion v-model="shouldShowAccordion" baseId="oprt-types" />
+    <StackedAccordion
+      v-model="shouldShowAccordion"
+      baseId="oprt-types"
+      icon="bi"
+    />
     <!-- boolean returned as reactive, by ref() -->
     <AccordionList
       baseId="oprt-types"
-      :n_i="1"
+      :n_i="[
+        'Algebra',
+        'Estatística',
+        'Probabilidade',
+        'Trigonometria',
+        'Geometria',
+        'Cálculo',
+      ]"
       :shouldShowAccordion="shouldShowAccordion"
     />
+    <div id="dlg-header-root">
+      <dialog
+        v-if="shouldShowLogin"
+        id="login-modal"
+        class="modal-content"
+        ref="modal"
+        data-target="login-modal"
+      >
+        <p>Dialog montado</p>
+        <button class="btn btn-close" @click="toggleLogin">Close</button>
+      </dialog>
+    </div>
   </header>
 </template>
 
@@ -39,10 +62,21 @@
     font-size: 0.8rem;
     font-weight: 500;
     padding-block: 0.3rem;
-    .biBtn {
-      color: rgba(223, 221, 221, 0.745);
-      padding-right: 1rem;
-      font-weight: 700;
-    }
+    position: sticky;
+    top: 0;
+  }
+  header dialog {
+    transform: translate(1vw, 8.9rem);
+  }
+  header .biBtn {
+    color: rgba(223, 221, 221, 0.745);
+    padding-right: 1rem;
+    font-weight: 700;
+  }
+  header #dlg-header-root {
+    position: fixed;
+  }
+  header button {
+    margin-bottom: 0;
   }
 </style>
