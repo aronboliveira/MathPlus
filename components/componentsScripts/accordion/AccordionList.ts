@@ -35,7 +35,7 @@ export const AccordionList = (() =>
     },
     methods: {
       routeToOprtGrp(btn: voidishHtmlEl): void {
-        handleRouteToOprtGrp(this, btn);
+        handleRouteToOprtGrp(this, btn, true);
       },
     },
     mounted() {

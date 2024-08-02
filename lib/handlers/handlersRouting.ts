@@ -10,6 +10,7 @@ import CalcRes from "../../components/CalcRes.vue";
 export function handleRouteToOprtGrp(
   thisEl: DefineComponent,
   btn: voidishHtmlEl,
+  toggleOpacity: boolean = false,
 ): void {
   try {
     if (
@@ -77,6 +78,17 @@ export function handleRouteToOprtGrp(
       if (!(typeof CalcRes === "object") || typeof CalcRes === "function")
         throw new Error(`CalcRes is not defined as an object.`);
       resultsGrid.innerHTML = ``;
+      if (toggleOpacity) {
+        resultsGrid.style.transition = resultsGrid.style.transition.replace(
+          "opacity 1s ease-in-out",
+          "",
+        );
+        resultsGrid.style.opacity = "0";
+        setTimeout(() => {
+          resultsGrid.style.transition += "opacity 1s ease-in-out";
+          resultsGrid.style.opacity = "1";
+        }, 200);
+      }
       if (btnCalc.dataset.operations) delete btnCalc.dataset.operations;
       for (const title of matchedFormulaArr) {
         try {

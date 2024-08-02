@@ -3,6 +3,7 @@
   --sec-bl: #1d1d1d69;
   --tert-bl: #504f4fba;
   --primar-wh: #ffffffba;
+  --tert-wh: #ffffffe6;
 }
 
 @keyframes dropIn {
@@ -140,8 +141,16 @@ input.form-control {
 }
 
 .inp-entry {
-  transition: border 2s ease-in-out, color 2s ease-in-out;
-  color: #af091cca;
+  transition: border 2s ease-in-out;
+  color: var(--primar-wh);
+}
+
+.inp-entry:focus {
+  color: var(--tert-wh);
+}
+
+.inp-entry::selection {
+  color: var(--primary-bl);
 }
 
 [id*="divResults"] {
