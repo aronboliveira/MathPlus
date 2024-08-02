@@ -192,12 +192,11 @@ input.form-control {
     margin-block: 0.5rem;
     white-space: pre-wrap;
   }
-
   [id*="divResults"] {
     width: 80vw;
   }
   #divEntry {
-    width: 90vw;
+    width: 80vw;
     display: flex;
     flex-flow: column wrap;
     white-space: normal;
