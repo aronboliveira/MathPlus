@@ -1,3 +1,38 @@
+import { factorial } from "./Algebra";
+
+export function permutation(
+  n: number = 0,
+  k: number = n,
+  circular: boolean = false,
+  ignoreOrder: boolean = false,
+  allowRepetition: boolean = false,
+): number {
+  if (n <= 0) return 0;
+  if (k === 0) k = 1;
+  k = Math.abs(Math.round(k));
+  n = Math.abs(Math.round(k));
+  const res = (() =>
+    (factorial(n + (allowRepetition && ignoreOrder ? k - 1 : 0)) -
+      (circular ? 1 : 0)) /
+    (circular
+      ? 1
+      : (ignoreOrder ? factorial(k) : 1) *
+        factorial(n - (allowRepetition && ignoreOrder ? 1 : k))))();
+  return Number.isFinite(res) ? res : 0;
+}
+
+export function multisetPermutation(
+  n: number = 0,
+  freqs: number[] = [],
+): number {
+  if (n <= 0 || freqs.length === 0) return 0;
+  n = Math.abs(Math.round(n));
+  freqs = freqs.map(n => Math.abs(Math.round(n)));
+  if (freqs.reduce((acc, n) => (acc += n), 0) > n) return 0;
+  const res = factorial(n) / freqs.reduce((acc, n) => (acc *= factorial(n)), 0);
+  return Number.isFinite(res) ? res : 0;
+}
+
 export class Combinator {
   static shuffle(ar: any[], rep: boolean = false): Array<any> | Set<any> {
     const copyAr = ar.slice();

@@ -7,7 +7,12 @@ import {
 } from "../../../lib/handlers/handlersErrors";
 import * as Formulas from "../../../lib/formulaTitles";
 import * as Algebra from "../../../lib/Algebra";
+import * as Combinatorics from "../../../lib/Combinator";
 import { regularToCamel } from "../../../lib/handlers/handlersModel";
+import {
+  algebraFormulaNames,
+  combinatoricsFormulaNames,
+} from "../../../lib/declarations/types";
 
 export const BtnCalc = (() =>
   defineComponent({
@@ -114,7 +119,7 @@ export const BtnCalc = (() =>
                   `Validation of Formula group type fetched`,
                   ["Array"],
                 );
-              const formula = sectFormulas.find(
+              let formula = sectFormulas.find(
                 f =>
                   f.toLowerCase().replaceAll(/[\s\+\-\*~>\.#]/g, "_") ===
                   oprtTarg.dataset.operation,
@@ -129,44 +134,95 @@ export const BtnCalc = (() =>
               setTimeout(() => {
                 try {
                   if (urlCase === "Algebra") {
-                    const formulaToOperate =
-                      Algebra[`${regularToCamel(formula)}`];
+                    const formulaToOperate: algebraFormulaNames =
+                      Algebra[`${regularToCamel(formula)}`].name;
                     if (typeof formulaToOperate !== "function")
-                      typeError(
+                      throw typeError(
                         formulaToOperate,
                         `Validation of Formula to Operate`,
                         ["function"],
                       );
-                    if (formulaToOperate.name === "linearFormula")
-                      oprtTarg.innerText = `${
-                        !Number.isFinite(Algebra.linearFormula())
-                          ? Algebra.linearFormula()
-                          : "0"
-                      }`;
-                    if (formulaToOperate.name === "quadraticFormula")
-                      oprtTarg.innerText = `${
-                        !Number.isFinite(Algebra.quadraticFormula())
-                          ? Algebra.quadraticFormula()
-                          : "0"
-                      }`;
-                    if (formulaToOperate.name === "cubicFormula")
-                      oprtTarg.innerText = `${
-                        !Number.isFinite(Algebra.cubicFormula())
-                          ? Algebra.cubicFormula()
-                          : "0"
-                      }`;
-                    if (formulaToOperate.name === "binominalTheorem")
-                      oprtTarg.innerText = `${
-                        !Number.isFinite(Algebra.binomialTheorem())
-                          ? Algebra.binomialTheorem()
-                          : "0"
-                      }`;
-                    if (formulaToOperate.name === "differenceOfSquares")
-                      oprtTarg.innerText = `${
-                        !Number.isFinite(Algebra.differenceOfSquares())
-                          ? Algebra.differenceOfSquares()
-                          : "0"
-                      }`;
+                    if (formulaToOperate === "linearFormula")
+                      oprtTarg.innerText = `${Algebra.linearFormula()}`;
+                    else if (formulaToOperate === "quadraticFormula")
+                      oprtTarg.innerText = `${Algebra.quadraticFormula()}`;
+                    else if (formulaToOperate === "cubicFormula")
+                      oprtTarg.innerText = `${Algebra.cubicFormula()}`;
+                    else if (formulaToOperate === "differenceOfSquares")
+                      oprtTarg.innerText = `${Algebra.differenceOfSquares()}`;
+                    else if (formulaToOperate === "leastCommonMultiple")
+                      oprtTarg.innerText = `${Algebra.leastCommonMultiple()}`;
+                    else if (formulaToOperate === "greatestCommonDivisor")
+                      oprtTarg.innerText = `${Algebra.greatestCommonDivisor()}`;
+                    else if (formulaToOperate === "binominalTheorem")
+                      oprtTarg.innerText = `${Algebra.binomialTheorem()}`;
+                    else if (
+                      formulaToOperate === "commonDifferenceOfArithmeticSeries"
+                    )
+                      oprtTarg.innerText = `${Algebra.commonDifferenceOfArithmeticSeries()}`;
+                    else if (formulaToOperate === "sumOfArithmeticSeries")
+                      oprtTarg.innerText = `${Algebra.sumOfArithmeticSeries()}`;
+                    else if (
+                      formulaToOperate === "commonDifferenceOfGeometricSeries"
+                    )
+                      oprtTarg.innerText = `${Algebra.commonDifferenceOfGeometricSeries()}`;
+                    else if (formulaToOperate === "sumOfGeometricSeries") {
+                      oprtTarg.innerText = `${Algebra.sumOfGeometricSeries()}`;
+                    }
+                  } else if (urlCase === "Combinatorics") {
+                    let circular = false,
+                      ignoreOrder = false,
+                      allowRepetition = false;
+                    if (/permutation|combination/gi.test(formula)) {
+                      formula = /multiset/gi.test(formula)
+                        ? "multisetPermutation"
+                        : "permutation";
+                      if (/circular/gi.test(formula)) circular = true;
+                      if (/combination/gi.test(formula)) allowRepetition = true;
+                      if (/repetition/gi.test(formula)) allowRepetition = true;
+                    }
+                    const formulaToOperate: combinatoricsFormulaNames =
+                      Combinatorics[`${regularToCamel(formula)}`].name;
+                    if (formulaToOperate === "permutation") {
+                      if (formula === "permutationWithoutRepetition")
+                        oprtTarg.innerText = `${Combinatorics.permutation()}`;
+                      if (formula === "circularPermutation")
+                        oprtTarg.innerText = `${Combinatorics.permutation(
+                          0,
+                          0,
+                          true,
+                        )}`;
+                      if (formula === "distinctPermutationWithoutRepetition")
+                        oprtTarg.innerText = `${Combinatorics.permutation(
+                          0,
+                          1,
+                        )}`;
+                      if (formula === "distinctPermutationWithRepetition")
+                        oprtTarg.innerText = `${Combinatorics.permutation(
+                          0,
+                          0,
+                          false,
+                          false,
+                          true,
+                        )}`;
+                      if (formula === "multisetPermutation")
+                        oprtTarg.innerText = `${Combinatorics.multisetPermutation()}`;
+                      if (formula === "combinationWithoutRepetition")
+                        oprtTarg.innerText = `${Combinatorics.permutation(
+                          0,
+                          0,
+                          false,
+                          true,
+                        )}`;
+                      if (formula === "combinationWithRepetition")
+                        oprtTarg.innerText = `${Combinatorics.permutation(
+                          0,
+                          0,
+                          false,
+                          true,
+                          true,
+                        )}`;
+                    }
                   }
                 } catch (e) {
                   console.error(

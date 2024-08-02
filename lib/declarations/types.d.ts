@@ -126,3 +126,23 @@ export type mainFooterCases =
   | "terms";
 export type pagesCases = "home" | "new-user" | "active-user" | "classes" | "/";
 export type FourNumCases = 0 | 1 | 2 | 3;
+export type urlCases =
+  | "Algebra"
+  | "Statistics"
+  | "Probability"
+  | "Combinatorics"
+  | "Trigonometry"
+  | "Geometry";
+export type algebraFormulaNames =
+  | "linearFormula"
+  | "quadraticFormula"
+  | "cubicFormula"
+  | "differenceOfSquares"
+  | "binominalTheorem"
+  | "leastCommonMultiple"
+  | "greatestCommonDivisor"
+  | "commonDifferenceOfArithmeticSeries"
+  | "sumOfArithmeticSeries"
+  | "commonDifferenceOfGeometricSeries"
+  | "sumOfGeometricSeries";
+export type combinatoricsFormulaNames = "permutation" | "distinctPermutation";

@@ -3,10 +3,13 @@ export const titlesAlgebra = [
   "Quadratic formula",
   "Cubic Formula",
   "Difference of Squares",
+  "Least Common Multiple",
+  "Greatest Common Divisor",
   "Binominal Theorem",
+  "Common Difference of Arithmetic Series",
   "Sum of Arithmetic Series",
-  "Sum of Geometric Series",
-  "Polynominal Roots",
+  "Geometric Series",
+  "Polynomial Roots",
   "Discriminant",
 ];
 export const titlesStatistics = [
@@ -52,12 +55,12 @@ export const titlesProbability = [
 export const titlesCombinatorics = [
   "Factorial",
   "Permutation without Repetition",
-  "Permutation of Multisets",
+  "Circular Permutation",
+  "Multiset Permutation",
   "Distinct Permutation without Repetition",
   "Distinc Permutation with Repetition",
   "Combination without Repetition",
   "Combination with Repetition",
-  "Inclusion-Exclusion Principle",
   "Pascal Triangle",
 ];
 export const titlesTrigonometry = [
@@ -73,3 +76,8 @@ export const titlesTrigonometry = [
   "Law of Cosines",
 ];
 export const titlesGeometry = ["Square Area", "Square Volume"];
+export const first50Primes = [
+  2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+  73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151,
+  157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229,
+];
