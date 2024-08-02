@@ -8,7 +8,7 @@ import { addOprtTarg } from "./handlersEvents";
 import CalcRes from "../../components/CalcRes.vue";
 
 export function handleRouteToOprtGrp(
-  thisEl: DefineComponent,
+  thisEl: DefineComponent | any,
   btn: voidishHtmlEl,
   toggleOpacity: boolean = false,
 ): void {

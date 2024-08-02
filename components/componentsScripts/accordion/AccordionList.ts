@@ -1,18 +1,7 @@
-import Vue, { defineComponent } from "vue";
-import {
-  initFillAttrs,
-  textTransformPascal,
-} from "../../../lib/handlers/handlersModel";
+import { defineComponent } from "vue";
+import { initFillAttrs } from "../../../lib/handlers/handlersModel";
 import { HTMLNav, voidishHtmlEl } from "../../../lib/declarations/types";
-import * as Formulas from "../../../lib/formulaTitles";
-import {
-  htmlElementNotFound,
-  stringError,
-  typeError,
-} from "../../../lib/handlers/handlersErrors";
-//@ts-ignore
-import CalcRes from "../../CalcRes.vue";
-import { addOprtTarg } from "../../../lib/handlers/handlersEvents";
+import { htmlElementNotFound } from "../../../lib/handlers/handlersErrors";
 import { handleRouteToOprtGrp } from "../../../lib/handlers/handlersRouting";
 export const AccordionList = (() =>
   defineComponent({

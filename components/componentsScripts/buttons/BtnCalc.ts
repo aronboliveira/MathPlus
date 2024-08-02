@@ -66,18 +66,16 @@ export const BtnCalc = (() =>
                   ],
                 );
               if ((inpEntries[i] as HTMLInputElement).value.length === 0) {
-                const prevPh = (inpEntries[i] as HTMLInputElement).placeholder;
-                const prevColor = getComputedStyle(
-                  inpEntries[i] as HTMLInputElement,
-                ).color;
                 (
                   inpEntries[i] as HTMLInputElement
                 ).placeholder = `This input needs to be filled`;
                 (inpEntries[i] as HTMLInputElement).style.color = "#af091cca";
                 (inpEntries[i] as HTMLInputElement).classList.add("red-ph");
                 setTimeout(() => {
-                  (inpEntries[i] as HTMLInputElement).placeholder = prevPh;
-                  (inpEntries[i] as HTMLInputElement).style.color = prevColor;
+                  (inpEntries[i] as HTMLInputElement).placeholder =
+                    "var(--primar-wh)";
+                  (inpEntries[i] as HTMLInputElement).style.color =
+                    "var(--primar-wh)";
                   (inpEntries[i] as HTMLInputElement).classList.remove(
                     "red-ph",
                   );
@@ -104,7 +102,7 @@ export const BtnCalc = (() =>
               console.log("with");
               console.log(oprtTarg.dataset.operation);
               oprtTarg.innerText = `Operating!`;
-              const sectFormulas = Formulas[`titles${urlCase}`];
+              const sectFormulas = (Formulas as any)[`titles${urlCase}`];
               if (!Array.isArray(sectFormulas))
                 throw typeError(
                   sectFormulas,

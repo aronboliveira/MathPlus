@@ -18,6 +18,6 @@
     transform: translate(0, -0.1rem);
   }
   #btnCalcValues:active {
-    transform: translate(0, 0rem);
+    transform: translate(0, 0.1rem);
   }
 </style>
