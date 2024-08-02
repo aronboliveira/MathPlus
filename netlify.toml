@@ -1,6 +1,6 @@
 [build]
   command = "npm run generate"
-  publish = "build"
+  publish = "dist"
   
 [build.environment]
     BRANCH = "main"
