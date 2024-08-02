@@ -20,9 +20,9 @@
       baseId="oprt-types"
       :n_i="[
         'Algebra',
-        'Statistics',
-        'Probability',
         'Combinatorics',
+        'Probability',
+        'Statistics',
         'Trigonometry',
         'Geometry',
       ]"

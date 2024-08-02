@@ -9,15 +9,35 @@ export function linearFormula(a: number = 0, b: number = 0): number {
   return Number.isFinite(res) ? res : 0;
 }
 
+export function discriminant(
+  a: number = 0,
+  b: number = 0,
+  c: number = 0,
+): {
+  nRoots: number;
+  value: number;
+} {
+  let value =
+    Math.sign(b ** 2 - 4 * a * c) * Math.sqrt(Math.abs(b ** 2 - 4 * a * c));
+  let nRoots = 1;
+  if (value > 0) nRoots = 2;
+  if (value < 0) nRoots = 0;
+  if (!Number.isFinite(value)) {
+    value = 0;
+    nRoots = 0;
+  }
+  return {
+    nRoots,
+    value,
+  };
+}
+
 export function quadraticFormula(
   a: number = 0,
   b: number = 0,
   c: number = 0,
 ): number {
-  const res =
-    (-b +
-      Math.sign(b ** 2 - 4 * a * c) * Math.sqrt(Math.abs(b ** 2 - 4 * a * c))) /
-    (2 * a);
+  const res = (-b + discriminant(a, b, c).value) / (2 * a);
   return Number.isFinite(res) ? res : 0;
 }
 
@@ -36,17 +56,23 @@ export function differenceOfSquares(a: number = 0, b: number = 0): number {
 }
 
 export const filledPrimes = [];
-export function isPrime(n: number): boolean {
+export function isPrimeByRootTrial(n: number): boolean {
   if (n <= 1) return false;
   if (n < 3 || n % 2 === 0 || n % 3 === 0) return true;
   for (let i = 5; i ** 2 <= n; i += 6)
     if (n % i === 0 || n % (i + 2) === 0) return false;
-  // const prevNums = [];
-  // for (let i = 5; i < n; i++) {
-  //   prevNums.push(i);
-  //   if (n % i === 0 || prevNums.some(prevNum => n % prevNum === 0))
-  //     return false;
-  // }
+  return true;
+}
+
+export function isPrime(n: number): boolean {
+  if (n <= 1) return false;
+  if (n < 3 || n % 2 === 0 || n % 3 === 0) return true;
+  const prevNums = [];
+  for (let i = 5; i < n; i++) {
+    prevNums.push(i);
+    if (n % i === 0 || prevNums.some(prevNum => n % prevNum === 0))
+      return false;
+  }
   return true;
 }
 

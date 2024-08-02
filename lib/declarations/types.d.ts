@@ -135,6 +135,8 @@ export type urlCases =
   | "Geometry";
 export type algebraFormulaNames =
   | "linearFormula"
+  | "discriminant"
+  | "numberOfRoots"
   | "quadraticFormula"
   | "cubicFormula"
   | "differenceOfSquares"
@@ -145,4 +147,4 @@ export type algebraFormulaNames =
   | "sumOfArithmeticSeries"
   | "commonDifferenceOfGeometricSeries"
   | "sumOfGeometricSeries";
-export type combinatoricsFormulaNames = "permutation" | "distinctPermutation";
+export type combinatoricsFormulaNames = "permutation" | "multisetPermutation";

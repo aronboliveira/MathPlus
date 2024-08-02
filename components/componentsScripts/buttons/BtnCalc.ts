@@ -134,17 +134,29 @@ export const BtnCalc = (() =>
               setTimeout(() => {
                 try {
                   if (urlCase === "Algebra") {
-                    const formulaToOperate: algebraFormulaNames =
-                      Algebra[`${regularToCamel(formula)}`].name;
-                    if (typeof formulaToOperate !== "function")
+                    if (oprtTarg.dataset.operation === "number_of_roots")
+                      formula = "Discriminant";
+                    const formulaToOperateFunc =
+                      Algebra[`${regularToCamel(formula)}`];
+                    if (typeof formulaToOperateFunc !== "function")
                       throw typeError(
-                        formulaToOperate,
+                        formulaToOperateFunc,
                         `Validation of Formula to Operate`,
                         ["function"],
                       );
+                    const formulaToOperate: algebraFormulaNames =
+                      formulaToOperateFunc.name;
                     if (formulaToOperate === "linearFormula")
                       oprtTarg.innerText = `${Algebra.linearFormula()}`;
-                    else if (formulaToOperate === "quadraticFormula")
+                    else if (formulaToOperate === "discriminant") {
+                      oprtTarg.dataset.operation === "number_of_roots"
+                        ? (oprtTarg.innerText = `${
+                            Algebra.discriminant().nRoots
+                          }`)
+                        : (oprtTarg.innerText = `${
+                            Algebra.discriminant().value
+                          }`);
+                    } else if (formulaToOperate === "quadraticFormula")
                       oprtTarg.innerText = `${Algebra.quadraticFormula()}`;
                     else if (formulaToOperate === "cubicFormula")
                       oprtTarg.innerText = `${Algebra.cubicFormula()}`;
@@ -170,20 +182,9 @@ export const BtnCalc = (() =>
                       oprtTarg.innerText = `${Algebra.sumOfGeometricSeries()}`;
                     }
                   } else if (urlCase === "Combinatorics") {
-                    let circular = false,
-                      ignoreOrder = false,
-                      allowRepetition = false;
-                    if (/permutation|combination/gi.test(formula)) {
-                      formula = /multiset/gi.test(formula)
-                        ? "multisetPermutation"
-                        : "permutation";
-                      if (/circular/gi.test(formula)) circular = true;
-                      if (/combination/gi.test(formula)) allowRepetition = true;
-                      if (/repetition/gi.test(formula)) allowRepetition = true;
-                    }
-                    const formulaToOperate: combinatoricsFormulaNames =
-                      Combinatorics[`${regularToCamel(formula)}`].name;
-                    if (formulaToOperate === "permutation") {
+                    console.log("Searching " + formula + "in Combinatorics...");
+                    formula = regularToCamel(formula);
+                    if (!/multiset/gi.test(formula)) {
                       if (formula === "permutationWithoutRepetition")
                         oprtTarg.innerText = `${Combinatorics.permutation()}`;
                       if (formula === "circularPermutation")
@@ -205,8 +206,6 @@ export const BtnCalc = (() =>
                           false,
                           true,
                         )}`;
-                      if (formula === "multisetPermutation")
-                        oprtTarg.innerText = `${Combinatorics.multisetPermutation()}`;
                       if (formula === "combinationWithoutRepetition")
                         oprtTarg.innerText = `${Combinatorics.permutation(
                           0,
@@ -222,7 +221,9 @@ export const BtnCalc = (() =>
                           true,
                           true,
                         )}`;
-                    }
+                    } else if (formula === "multisetPermutation")
+                      oprtTarg.innerText = `${Combinatorics.multisetPermutation()}`;
+                    else stringError(formula, "/permutation/g");
                   }
                 } catch (e) {
                   console.error(

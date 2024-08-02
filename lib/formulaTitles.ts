@@ -1,16 +1,35 @@
 export const titlesAlgebra = [
-  "Linear formula",
-  "Quadratic formula",
+  "Linear Formula",
+  "Discriminant",
+  "Number of Roots",
+  "Quadratic Formula",
   "Cubic Formula",
   "Difference of Squares",
   "Least Common Multiple",
   "Greatest Common Divisor",
-  "Binominal Theorem",
   "Common Difference of Arithmetic Series",
   "Sum of Arithmetic Series",
-  "Geometric Series",
-  "Polynomial Roots",
-  "Discriminant",
+  "Common Difference of Geometric Series",
+  "Sum of Geometric Series",
+  "Binominal Theorem",
+];
+export const titlesCombinatorics = [
+  "Permutation without Repetition",
+  "Circular Permutation",
+  "Multiset Permutation",
+  "Distinct Permutation without Repetition",
+  "Distinct Permutation with Repetition",
+  "Combination without Repetition",
+  "Combination with Repetition",
+];
+export const titlesProbability = [
+  "Simple Probability",
+  "Addition Rule",
+  "Multiplication Rule",
+  "Bayes' Theorem",
+  "Expected Value",
+  "Binominal Distribution",
+  "Poisson Distribution",
 ];
 export const titlesStatistics = [
   "Arithmetic Mean",
@@ -42,26 +61,6 @@ export const titlesStatistics = [
   "Pearson's Assymetry Index",
   "Person's Correlation Test",
   "Pearson's Test",
-];
-export const titlesProbability = [
-  "Simple Probability",
-  "Addition Rule",
-  "Multiplication Rule",
-  "Bayes' Theorem",
-  "Expected Value",
-  "Binominal Distribution",
-  "Poisson Distribution",
-];
-export const titlesCombinatorics = [
-  "Factorial",
-  "Permutation without Repetition",
-  "Circular Permutation",
-  "Multiset Permutation",
-  "Distinct Permutation without Repetition",
-  "Distinc Permutation with Repetition",
-  "Combination without Repetition",
-  "Combination with Repetition",
-  "Pascal Triangle",
 ];
 export const titlesTrigonometry = [
   "Pythagorean Identity",

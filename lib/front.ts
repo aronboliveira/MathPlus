@@ -10,6 +10,12 @@ export default function defHydrateFront() {
   };
   if (btnCalc instanceof HTMLButtonElement) {
     btnCalc.addEventListener("click", () => {
+      if (
+        /algebra|combinatorics|probability|statistics|trigonometry|geometry/g.test(
+          location.search,
+        )
+      )
+        return;
       const gValues = (
         document.getElementById("gValuesInp") as HTMLInputElement | null
       )?.value;
