@@ -89,7 +89,6 @@ export const StackedAccordion = (() =>
                   return;
                 }
                 targ.style.width = `${parsedWidth + base}px`;
-                console.log("ticking...");
               } catch (e) {
                 console.error(
                   `Error executing interval:\n${(e as Error).message}`,
@@ -116,7 +115,6 @@ export const StackedAccordion = (() =>
                   throw new Error(
                     `Failed to fetch target accordion on timeout`,
                   );
-                // targ.style.width = `10rem`;
               } catch (e) {
                 console.error(
                   `Error executing timeout:\n${(e as Error).message}`,
@@ -132,7 +130,6 @@ export const StackedAccordion = (() =>
                     `Failed to fetch target accordion on timeout`,
                   );
                 targ.style.display = `none`;
-                console.log("Width to 0...");
                 targ.style.width = `0`;
               } catch (e) {
                 console.error(
@@ -183,7 +180,11 @@ export const StackedAccordion = (() =>
           throw htmlElementNotFound(targ, `Validation of accordion instance`);
         if (!targ.classList.contains("shown")) targ.style.display = "none";
       } catch (e) {
-        console.error(`Error:${(e as Error).message}`);
+        console.error(
+          `Error executing procedur for hidding accordion on mounting:\n${
+            (e as Error).message
+          }`,
+        );
       }
     },
   }))();

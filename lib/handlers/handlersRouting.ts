@@ -23,30 +23,26 @@ export function handleRouteToOprtGrp(
         'HTMLButtonElement, <input type="button">',
       ]);
     if (btn.innerText === "") throw stringError("Empty text", "/./+");
-    try {
-      let name = /\s/g.test(btn.innerText)
-        ? btn.innerText.slice(0, btn.innerText.indexOf(" ")).trim()
-        : btn.innerText.trim();
-      history.pushState(
-        {},
-        "",
-        `${location.origin}${location.pathname}?oprt-grp=${name.toLowerCase()}`,
-      );
-    } catch (e) {
-      console.error(
-        `Error executing procedure for updating url:\n${(e as Error).message}`,
-      );
-    }
+    let name = /\s/g.test(btn.innerText)
+      ? btn.innerText
+          .slice(0, btn.innerText.indexOf(" "))
+          .toLowerCase()
+          .replaceAll(/\s\t\r\n/g, "")
+      : btn.innerText
+          .trim()
+          .toLowerCase()
+          .replaceAll(/\s\t\r\n/g, "");
+    name = /[a-z]/g.test(name)
+      ? name
+      : btn.innerText.replaceAll(/[\s\r\t\n]/g, "").toLowerCase();
+    history.pushState(
+      {},
+      "",
+      `${location.origin}${location.pathname}?oprt-grp=${name}`,
+    );
     try {
       const matchedFormulaArr = (Formulas as any)[
-        `titles${
-          /\s/g.test(btn.innerText)
-            ? textTransformPascal(btn.innerText).slice(
-                0,
-                btn.innerText.indexOf(" "),
-              )
-            : textTransformPascal(btn.innerText)
-        }`
+        `titles${textTransformPascal(name)}`
       ];
       if (!Array.isArray(matchedFormulaArr))
         throw typeError(matchedFormulaArr, `Validation of Formula Array type`, [

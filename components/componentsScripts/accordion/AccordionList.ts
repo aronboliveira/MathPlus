@@ -37,12 +37,14 @@ export const AccordionList = (() =>
             `[data-route=${location.search.replace(/[\?&]oprt-grp=/, "")}`,
           );
           if (!(routingButton instanceof HTMLElement)) {
+            console.log("No routing button...");
             history.pushState({}, "", `${location.origin}${location.pathname}`);
             throw htmlElementNotFound(
               routingButton,
               `Validation of Routing Button based on url`,
             );
           }
+          console.log("Calling handler for routing on mount...");
           handleRouteToOprtGrp(this, routingButton);
         }
       } catch (e) {

@@ -232,6 +232,21 @@ export function kebabToCamel(str: string): string {
   }
 }
 
+export function regularToCamel(str: string): string {
+  const iniStr = str;
+  try {
+    return str
+      .split(" ")
+      .map((fragment, i) =>
+        i === 0 ? fragment.toLowerCase() : textTransformPascal(fragment),
+      )
+      .join("");
+  } catch (e) {
+    console.error(`Error executing camelToKebab:\n${(e as Error).message}`);
+    return iniStr;
+  }
+}
+
 export function normalizeAccents(
   str: string,
   insensitive: boolean = true,

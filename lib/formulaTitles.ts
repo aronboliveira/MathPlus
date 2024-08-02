@@ -1,12 +1,13 @@
 export const titlesAlgebra = [
+  "Linear formula",
   "Quadratic formula",
   "Cubic Formula",
-  "Discriminant",
+  "Difference of Squares",
   "Binominal Theorem",
   "Sum of Arithmetic Series",
   "Sum of Geometric Series",
   "Polynominal Roots",
-  "Logarithm Properties",
+  "Discriminant",
 ];
 export const titlesStatistics = [
   "Arithmetic Mean",

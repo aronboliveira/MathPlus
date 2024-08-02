@@ -6,6 +6,9 @@ import {
   typeError,
 } from "../../../lib/handlers/handlersErrors";
 import * as Formulas from "../../../lib/formulaTitles";
+import * as Algebra from "../../../lib/Algebra";
+import { regularToCamel } from "../../../lib/handlers/handlersModel";
+
 export const BtnCalc = (() =>
   defineComponent({
     name: "BtnCalc",
@@ -66,14 +69,15 @@ export const BtnCalc = (() =>
                   ],
                 );
               if ((inpEntries[i] as HTMLInputElement).value.length === 0) {
+                // [should have a list of placeholders]
+                const prevPh = (inpEntries[i] as HTMLInputElement).placeholder;
                 (
                   inpEntries[i] as HTMLInputElement
                 ).placeholder = `This input needs to be filled`;
                 (inpEntries[i] as HTMLInputElement).style.color = "#af091cca";
                 (inpEntries[i] as HTMLInputElement).classList.add("red-ph");
                 setTimeout(() => {
-                  (inpEntries[i] as HTMLInputElement).placeholder =
-                    "var(--primar-wh)";
+                  (inpEntries[i] as HTMLInputElement).placeholder = prevPh;
                   (inpEntries[i] as HTMLInputElement).style.color =
                     "var(--primar-wh)";
                   (inpEntries[i] as HTMLInputElement).classList.remove(
@@ -82,7 +86,11 @@ export const BtnCalc = (() =>
                 }, 2000);
               }
             } catch (e) {
-              console.error(`Error:${(e as Error).message}`);
+              console.error(
+                `Error executing iteration ${i} for reading entries:\n${
+                  (e as Error).message
+                }`,
+              );
             }
           }
           const oprtsTBD = ev.currentTarget.dataset.operations.split("__");
@@ -90,7 +98,6 @@ export const BtnCalc = (() =>
             throw new Error(`Failed to populate List of Operations to be done`);
           for (let i = 0; i < oprtsTBD.length; i++) {
             try {
-              console.log(oprtsTBD[i]);
               const oprtTarg = document.querySelector(
                 `[data-operation="${oprtsTBD[i]}"]`,
               );
@@ -99,8 +106,6 @@ export const BtnCalc = (() =>
                   oprtTarg,
                   `Validation of Operation Target Element`,
                 );
-              console.log("with");
-              console.log(oprtTarg.dataset.operation);
               oprtTarg.innerText = `Operating!`;
               const sectFormulas = (Formulas as any)[`titles${urlCase}`];
               if (!Array.isArray(sectFormulas))
@@ -120,7 +125,57 @@ export const BtnCalc = (() =>
                   `Validation of fetched formula type or search`,
                   ["string"],
                 );
-              oprtTarg.innerText = `Operating for ${formula}!`;
+              oprtTarg.innerText = `Operating for ${formula}...`;
+              setTimeout(() => {
+                try {
+                  if (urlCase === "Algebra") {
+                    const formulaToOperate =
+                      Algebra[`${regularToCamel(formula)}`];
+                    if (typeof formulaToOperate !== "function")
+                      typeError(
+                        formulaToOperate,
+                        `Validation of Formula to Operate`,
+                        ["function"],
+                      );
+                    if (formulaToOperate.name === "linearFormula")
+                      oprtTarg.innerText = `${
+                        !Number.isFinite(Algebra.linearFormula())
+                          ? Algebra.linearFormula()
+                          : "0"
+                      }`;
+                    if (formulaToOperate.name === "quadraticFormula")
+                      oprtTarg.innerText = `${
+                        !Number.isFinite(Algebra.quadraticFormula())
+                          ? Algebra.quadraticFormula()
+                          : "0"
+                      }`;
+                    if (formulaToOperate.name === "cubicFormula")
+                      oprtTarg.innerText = `${
+                        !Number.isFinite(Algebra.cubicFormula())
+                          ? Algebra.cubicFormula()
+                          : "0"
+                      }`;
+                    if (formulaToOperate.name === "binominalTheorem")
+                      oprtTarg.innerText = `${
+                        !Number.isFinite(Algebra.binomialTheorem())
+                          ? Algebra.binomialTheorem()
+                          : "0"
+                      }`;
+                    if (formulaToOperate.name === "differenceOfSquares")
+                      oprtTarg.innerText = `${
+                        !Number.isFinite(Algebra.differenceOfSquares())
+                          ? Algebra.differenceOfSquares()
+                          : "0"
+                      }`;
+                  }
+                } catch (e) {
+                  console.error(
+                    `Error executing procedure for finding formula function:\n${
+                      (e as Error).message
+                    }`,
+                  );
+                }
+              }, 1000);
             } catch (e) {
               console.error(
                 `Error executing iteration ${i} for loop of operations:\n${
