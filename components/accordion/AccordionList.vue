@@ -35,11 +35,11 @@
 </template>
 <style scoped>
   .accordion-nav {
+    width: 0;
     display: flex;
     flex-flow: column nowrap;
     flex-grow: 1;
     width: -moz-fit-content;
-    width: 10rem;
     max-width: 75vw;
     height: -moz-fit-content;
     height: fit-content;
@@ -52,13 +52,20 @@
     box-sizing: border-box;
     background-color: #242527;
     z-index: 99;
-    overflow-y: auto;
-    overflow-x: auto;
     transform: translateX(100%);
     transition: transform 0.4s ease;
+    animation: none;
+  }
+  .accordion-nav * {
+    width: 0;
   }
   .accordion-nav.shown {
     transform: translateX(0%);
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  .accordion-nav.shown * {
+    width: unset;
   }
   .accordion-nav .accordion-list {
     padding-right: 10%;

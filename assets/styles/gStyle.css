@@ -173,7 +173,7 @@ input.form-control {
 
 #resultsGrid {
   display: grid;
-  width: 100vw;
+  width: 80vw;
   grid-template-columns: repeat(3, 28.3vw);
   column-gap: 3vw;
   scrollbar-width: thin;
@@ -187,12 +187,6 @@ input.form-control {
 }
 
 @media screen and (max-width: 900px) {
-  .accordion-nav {
-    display: none;
-  }
-  .accordion-nav.shown {
-    display: flex;
-  }
   .divInp label,
   .divResult label {
     margin-block: 0.5rem;
