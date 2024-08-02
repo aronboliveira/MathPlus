@@ -5,8 +5,6 @@ export default function defHydrateFront() {
   const statistics = new Statistic([1, 2, 3, 4, 4, 5, 6, 10]);
   const btnCalc = document.getElementById("btnCalcValues");
   const fixFactor = (returned: number, decimals: number = 4): number => {
-    // const factor = 10 * decimals;
-    // return Math.round(returned * factor) / factor;
     console.log(decimals);
     return returned;
   };
@@ -28,9 +26,9 @@ export default function defHydrateFront() {
         const values = gValues
           .trim()
           .split(" ")
-          .map((value) => {
+          .map(value => {
             let parsedValue = parseFloat(
-              value.replaceAll(",", ".").replaceAll(/[^0-9]/g, "")
+              value.replaceAll(",", ".").replaceAll(/[^0-9]/g, ""),
             );
             if (!Number.isFinite(parsedValue)) parsedValue = 0;
             return parsedValue;
@@ -45,17 +43,21 @@ export default function defHydrateFront() {
           : console.error(`Erro encontrando elemento para average`);
         const averageHarm =
           document.getElementById("averageHarm") ??
-          document.querySelector('label[for*="averageHarm"]')?.nextElementSibling;
+          document.querySelector('label[for*="averageHarm"]')
+            ?.nextElementSibling;
         averageHarm instanceof HTMLElement
           ? (averageHarm.innerText = fixFactor(
-              statistics.averageHarm()
+              statistics.averageHarm(),
             ).toString())
           : console.error(`Erro encontrando elemento para harmonic average`);
         const averageGeo =
           document.getElementById("averageGeo") ??
-          document.querySelector('label[for*="averageGeo"]')?.nextElementSibling;
+          document.querySelector('label[for*="averageGeo"]')
+            ?.nextElementSibling;
         averageGeo instanceof HTMLElement
-          ? (averageGeo.innerText = fixFactor(statistics.averageGeo()).toString())
+          ? (averageGeo.innerText = fixFactor(
+              statistics.averageGeo(),
+            ).toString())
           : console.error(`Erro encontrando element para geometric average`);
         const median =
           document.getElementById("median") ??
@@ -80,10 +82,11 @@ export default function defHydrateFront() {
           : console.error(`Erro encontrando element para variance`);
         const varianceGeo =
           document.getElementById("varianceGeo") ??
-          document.querySelector('label[for*="varianceGeo"]')?.nextElementSibling;
+          document.querySelector('label[for*="varianceGeo"]')
+            ?.nextElementSibling;
         varianceGeo instanceof HTMLElement
           ? (varianceGeo.innerText = fixFactor(
-              statistics.varianceGeo()
+              statistics.varianceGeo(),
             ).toString())
           : console.error(`Erro encontrando element para geometric variance`);
         const stdDev =
@@ -92,7 +95,7 @@ export default function defHydrateFront() {
         stdDev instanceof HTMLElement
           ? (stdDev.innerText = fixFactor(statistics.stdDev()).toString())
           : console.error(
-              `Erro encontrando element para arithmetic standard deviation`
+              `Erro encontrando element para arithmetic standard deviation`,
             );
         const stdDevGeo =
           document.getElementById("stdDevGeo") ??
@@ -100,7 +103,7 @@ export default function defHydrateFront() {
         stdDevGeo instanceof HTMLElement
           ? (stdDevGeo.innerText = fixFactor(statistics.stdDevGeo()).toString())
           : console.error(
-              `Erro encontrando element para geometric standard deviation`
+              `Erro encontrando element para geometric standard deviation`,
             );
         const cVar =
           document.getElementById("cVar") ??
@@ -163,7 +166,7 @@ export default function defHydrateFront() {
         lowOl instanceof HTMLElement
           ? (lowOl.innerText =
               quartis[3][1]
-                .map((number) => fixFactor(number))
+                .map(number => fixFactor(number))
                 .toString()
                 .replace(/\[/g, "")
                 .replace(/\]/g, "") || "Nenhum")
@@ -180,7 +183,7 @@ export default function defHydrateFront() {
         upOl instanceof HTMLElement
           ? (upOl.innerText =
               quartis[4][1]
-                .map((number) => fixFactor(number))
+                .map(number => fixFactor(number))
                 .toString()
                 .replace(/\[/g, "")
                 .replace(/\]/g, "") || "Nenhum")
@@ -190,12 +193,12 @@ export default function defHydrateFront() {
           document.querySelector('label[for*="pearsonAssymetryIndex"]')
             ?.nextElementSibling;
         const indexPearsonAssymetry = fixFactor(
-          statistics.pearsonAssymetryIndex()
+          statistics.pearsonAssymetryIndex(),
         );
         pearsonAssymetryIndex instanceof HTMLElement
           ? (pearsonAssymetryIndex.innerText = indexPearsonAssymetry.toString())
           : console.error(
-              `Erro encontrando element para Pearson Assymetry index`
+              `Erro encontrando element para Pearson Assymetry index`,
             );
         const testPearsonIndex =
           document.getElementById("testPearsonIndex") ??
@@ -203,7 +206,7 @@ export default function defHydrateFront() {
             ?.nextElementSibling;
         testPearsonIndex instanceof HTMLElement
           ? (testPearsonIndex.innerText = statistics.testPearsonIndex(
-              indexPearsonAssymetry
+              indexPearsonAssymetry,
             ))
           : console.error(`Erro encontrando element para testPearsonIndex`);
         const curtosis =
@@ -216,9 +219,9 @@ export default function defHydrateFront() {
           const yValues = sValues
             .trim()
             .split(" ")
-            .map((value) => {
+            .map(value => {
               let parsedValue = parseFloat(
-                value.replaceAll(",", ".").replaceAll(/[^0-9]/g, "")
+                value.replaceAll(",", ".").replaceAll(/[^0-9]/g, ""),
               );
               if (!Number.isFinite(parsedValue)) parsedValue = 0;
               return parsedValue;
@@ -233,14 +236,14 @@ export default function defHydrateFront() {
                 .pearsonCorrelationIndex(values, yValues)
                 .toString())
             : console.error(
-                `Erro localizando element para índice de correlação de Pearson`
+                `Erro localizando element para índice de correlação de Pearson`,
               );
         }
       } else console.error(`Erro capturando valores gerais`);
       if (pValues && tValues) {
         const total = tValues.trim().split(" ");
         const events = pValues.trim().split(" ");
-        const eventsChances = events.map((event) => {
+        const eventsChances = events.map(event => {
           let prob = fixFactor(statistics.probSimpleStr(event, total));
           if (!Number.isFinite(prob)) prob = 0;
           return prob;
@@ -250,17 +253,19 @@ export default function defHydrateFront() {
           document.querySelector('label[for="probSimple"]')?.nextElementSibling;
         probSimple instanceof HTMLElement
           ? (probSimple.innerText = eventsChances
-              .map((num) => {
+              .map(num => {
                 return Number.isFinite(num) ? num : 0;
               })
               .map((num, i) =>
                 !(i % 2 === 0)
                   ? `${fixFactor(num) * 100}% \n`
-                  : `${fixFactor(num) * 100}% `
+                  : `${fixFactor(num) * 100}% `,
               )
               .toString()
               .replaceAll(",", ""))
-          : console.error(`Erro encontrando element para probabilidade simples`);
+          : console.error(
+              `Erro encontrando element para probabilidade simples`,
+            );
         const probCond =
           document.getElementById("probCond") ??
           document.querySelector('label[for="probCond"]')?.nextElementSibling;
@@ -272,7 +277,8 @@ export default function defHydrateFront() {
               while (shuffleArray.length < numEventsCombations) {
                 let shuffled = Combinator.shuffle(total);
                 if (shuffled instanceof Set) shuffled = Array.from(shuffled);
-                if (!shuffleArray.includes(shuffled)) shuffleArray.push(shuffled);
+                if (!shuffleArray.includes(shuffled))
+                  shuffleArray.push(shuffled);
                 if (safeAcc > 999) break;
                 safeAcc++;
               }
@@ -281,28 +287,27 @@ export default function defHydrateFront() {
                   return statistics.probCond(
                     shuffleArray[c][i],
                     shuffleArray[c][i + 1],
-                    total
+                    total,
                   );
                 });
               });
               probCond.innerText = condEventsChance
                 .flat(1)
-                .map((num) => {
+                .map(num => {
                   return Number.isFinite(num) ? num : 0;
                 })
                 .map((num, i) =>
                   !(i % 2 === 0)
                     ? `${fixFactor(num) * 100}% \n`
-                    : `${fixFactor(num) * 100}% `
+                    : `${fixFactor(num) * 100}% `,
                 )
                 .toString()
                 .replaceAll(",", "");
             })()
           : console.error(
-              `Erro encontrando element para probabilidade condicional`
+              `Erro encontrando element para probabilidade condicional`,
             );
       } else console.error(`Erro capturando valores para probabilidade`);
     });
-  } else console.error(`Erro capturando botão!`);
-  
+  } else console.error(`Error fetching calc button for testing.`);
 }

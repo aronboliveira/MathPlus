@@ -3,7 +3,7 @@
     "target": "ES2021",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "lib": ["ES2021", "ESNext.AsyncIterable", "DOM"],
+    "lib": ["ES2022", "ESNext.AsyncIterable", "DOM"],
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
@@ -13,6 +13,7 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true,
+    "allowImportingTsExtensions": true,
     "importHelpers": true,
     "baseUrl": ".",
     "paths": {

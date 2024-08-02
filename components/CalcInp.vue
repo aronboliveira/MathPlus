@@ -12,6 +12,11 @@
 <template>
   <div class="divInp">
     <label :class="labCls" :for="inpId">{{ labTxt }}</label>
-    <input :type="inpT" :class="inpCls" :placeholder="inpPh" :id="inpId" />
+    <input
+      :type="inpT"
+      :class="'inp-entry ' + inpCls"
+      :placeholder="inpPh"
+      :id="inpId"
+    />
   </div>
 </template>

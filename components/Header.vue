@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <header id="mainHeader" data-parent="parent-accordion-oprt-types">
+  <header v-cloak id="mainHeader" data-parent="parent-accordion-oprt-types">
     <button class="biBtn" data-src="login-modal" @click="toggleLogin($event)">
       <span>Login</span>
     </button>
@@ -74,5 +74,8 @@
   }
   header button {
     margin-bottom: 0;
+  }
+  [v-cloak] {
+    display: none;
   }
 </style>

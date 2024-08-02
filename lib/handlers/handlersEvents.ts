@@ -33,11 +33,8 @@ export function addOprtTarg(title: string, targEl: voidishEl): void {
         btnCalc,
         `Validation of Button for Calculation instance`,
       );
-    if (!btnCalc.dataset.operations) btnCalc.dataset.operations = "";
-    btnCalc.dataset.operations += title;
     nextTick(() => {
       try {
-        console.log("adding targ operation data...");
         let oprtOutp: voidishHtmlEl = targEl;
         if (!targEl.classList.contains("result-output"))
           oprtOutp = targEl.querySelector("output");
@@ -60,7 +57,9 @@ export function addOprtTarg(title: string, targEl: voidishEl): void {
           if (!oprtOutp.dataset.operation || oprtOutp.dataset.operation === "")
             oprtOutp.dataset.operation = title
               .toLowerCase()
-              .replaceAll(/[\s\+\-\*~>\.#]/g, "__");
+              .replaceAll(/[\s\+\-\*~>\.#]/g, "_");
+          if (!btnCalc.dataset.operations) btnCalc.dataset.operations = "";
+          btnCalc.dataset.operations += oprtOutp.dataset.operation + "__";
         }, 300);
       } catch (e) {
         console.error(`Error:${(e as Error).message}`);

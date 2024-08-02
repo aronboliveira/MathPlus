@@ -22,7 +22,7 @@ export const StackedAccordion = (() =>
       },
     },
     methods: {
-      toggleAccordion(ev: MouseEvent) {
+      toggleAccordion(ev: MouseEvent): void {
         this.$emit("input", !this.value);
         console.log(this.value);
         try {
@@ -33,7 +33,7 @@ export const StackedAccordion = (() =>
             targParent = ev.currentTarget.closest(
               `[data-parent="parent-${ev.currentTarget.dataset.src}"]`,
             );
-          targParent ??= ev.currentTarget.parentElement;
+          if (!targParent) targParent = ev.currentTarget.parentElement;
           if (!(targParent instanceof HTMLElement))
             throw htmlElementNotFound(
               targParent,
@@ -44,16 +44,17 @@ export const StackedAccordion = (() =>
             targParent.querySelector(
               `[data-target=${ev.currentTarget.dataset.src}]`,
             );
-          targ ??=
-            targParent.querySelector(".accordion-nav") ??
-            targParent.querySelector(".accordion-div");
+          if (!targ)
+            targ =
+              targParent.querySelector(".accordion-nav") ??
+              targParent.querySelector(".accordion-div");
           if (!(targ instanceof HTMLElement))
             throw htmlElementNotFound(targ, `Validation of accordion instance`);
           targ.classList.toggle("shown");
           let targSpan = this.$refs.icon as nullishHTMLEl;
           if (!(targSpan instanceof HTMLElement))
             console.warn(`Failed to fetch span based on refs`);
-          targSpan ??= ev.currentTarget.querySelector(
+          if (!(targSpan instanceof HTMLElement)) targSpan = ev.currentTarget.querySelector(
             `${
               ev.currentTarget.dataset.src ||
               ev.currentTarget.id.slice(

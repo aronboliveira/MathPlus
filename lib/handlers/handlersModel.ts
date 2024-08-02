@@ -529,10 +529,9 @@ export function linkLabelToEntry(
           if (relEl instanceof HTMLSelectElement)
             relEl.title = `Please select your gender here`;
         } else if (/countryname/gi.test(relEl.id)) {
-          if (relEl instanceof HTMLInputElement) {
-            relEl.autocomplete = "sex";
+          if (relEl instanceof HTMLInputElement)
             relEl.classList.add("autocorrect", "autocorrect-full");
-          } else if (relEl instanceof HTMLSelectElement)
+          else if (relEl instanceof HTMLSelectElement)
             relEl.title = `Please select your current country here`;
         } else if (/age/gi.test(relEl.id)) {
           relEl.required = true;

@@ -1,12 +1,18 @@
 <script lang="ts">
   import Vue from "vue";
-  import { IndexScript } from "../components/componentsScripts/index.ts";
+  import { IndexScript } from "../components/componentsScripts/index";
   import CalcInp from "../components/CalcInp.vue";
   import CalcRes from "../components/CalcRes.vue";
   import Header from "../components/Header.vue";
-  import ref from "vue";
+  import BtnCalc from "../components/buttons/BtnCalc.vue";
   export default Vue.extend({
     name: "IndexPage",
+    components: {
+      Header,
+      CalcInp,
+      BtnCalc,
+      CalcRes,
+    },
     mounted() {
       IndexScript("mounted");
     },
@@ -41,9 +47,7 @@
               inpPh="Somente espaçados"
             />
           </div>
-          <button class="btn btn-info" id="btnCalcValues">
-            Calcular valores
-          </button>
+          <BtnCalc />
           <div id="resultsGrid">
             <div id="divResults1">
               <CalcRes labTxt="Média Arimética" outpId="average" />

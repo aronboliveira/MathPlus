@@ -49,6 +49,11 @@ body {
   background: var(--primary-bl);
 }
 
+header,
+header > * {
+  animation: fadeIn 3s ease-in-out;
+}
+
 dialog.modal-content {
   background-color: #fff;
   border-radius: 0.5rem;
@@ -102,19 +107,41 @@ dl {
   margin: 0;
 }
 
-button,
-#divEntry {
+button {
   margin-bottom: 2vh;
 }
 
-.divInp,
-.divResult {
-  .form-control {
-    background: var(--tert-bl);
-    &::placeholder {
-      color: var(--primar-wh);
-    }
-  }
+.form-control.result-output,
+input.form-control {
+  border: 0.15rem solid #ced4da9d;
+}
+
+.divInp label,
+.divResult label {
+  margin-block: 0.5rem;
+  white-space: nowrap;
+}
+
+.divInp .form-control,
+.divResult .form-control {
+  background: var(--tert-bl);
+}
+
+.divInp .form-control::placeholder,
+.divResult .form-control::placeholder {
+  color: var(--primar-wh);
+  transition: color 2s ease-in-out;
+  opacity: 0.6;
+}
+
+.divInp .red-ph.form-control::placeholder,
+.divResult .red-ph.form-control::placeholder {
+  color: #af091cca;
+}
+
+.inp-entry {
+  transition: border 2s ease-in-out, color 2s ease-in-out;
+  color: #af091cca;
 }
 
 [id*="divResults"] {
@@ -124,19 +151,25 @@ button,
 #divEntry {
   display: grid;
   width: 50vw;
-  grid-template-columns: repeat(2, 30vw);
+  grid-template-columns: repeat(2, 44.5vw);
   white-space: normal;
   column-gap: 3vw;
-  margin-top: 2vh;
+  margin-block: 2rem;
 }
 
 #resultsGrid {
   display: grid;
   width: 100vw;
-  grid-template-columns: repeat(3, 25vw);
+  grid-template-columns: repeat(3, 28.3vw);
   column-gap: 3vw;
-  overflow: auto;
   scrollbar-width: thin;
+}
+
+#resultsGrid label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 900px) {

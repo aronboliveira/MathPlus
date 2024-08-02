@@ -14,11 +14,7 @@ export default {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   build: {
-    loaders: {
-      scss: {
-        implementation: require("sass"),
-      },
-    },
+    loaders: {},
   },
   server: {
     port: 3004,

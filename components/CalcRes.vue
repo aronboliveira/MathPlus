@@ -1,6 +1,9 @@
 <style scoped>
-  .divResult {
-    /* Add any scoped styles here */
+  .divResult .result-output {
+    color: #ffff;
+    font-size: 0.7rem;
+    overflow: auto;
+    vertical-align: middle;
   }
 </style>
 

@@ -20,6 +20,11 @@
           class="accordion-button btn"
           :key="'accordion-btn__' + i"
           :id="'accordion-button-' + baseId + i"
+          :data-route="`${
+            /\s/g.test(i)
+              ? i.slice(0, i.indexOf(' ')).trim().toLowerCase()
+              : i.trim().toLowerCase()
+          }`"
           @click="routeToOprtGrp($event.currentTarget)"
         >
           {{ i }}
