@@ -1,11 +1,19 @@
 [build]
-publish = 'build'
-command = 'npm run build'
-
-[context.production.environment]
-NODE.ENV = 'production'
+  command = "npm run build"
+  publish = "build"
+  
+[build.environment]
+    BRANCH = "main"
+    CONTEXT = "production"
+    DEPLOY_PRIME_URL = "https://main--math-plus-app.netlify.app"
+    DEPLOY_URL = "https://66ac4d2e8362b3b75552e12b--math-plus-app.netlify.app"
+    GO_VERSION = "1.19.x"
+    SITE_ID = "49f4e822-f8ed-4871-a2b3-cb31c67fa17f"
+    SITE_NAME = "math-plus-app"
+    URL = "https://math-plus-app.netlify.app"
+    NODE_ENV = "production"
 
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+  from = "/*"
+  to = "/index.html"
+  status = 200
