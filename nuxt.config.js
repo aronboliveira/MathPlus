@@ -1,4 +1,5 @@
 export default {
+  buildDir: 'build',
   target: "static",
   head: {
     title: "Math Plus",
