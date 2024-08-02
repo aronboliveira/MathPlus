@@ -187,17 +187,25 @@ input.form-control {
 }
 
 @media screen and (max-width: 900px) {
+  .divInp label,
+  .divResult label {
+    margin-block: 0.5rem;
+    white-space: pre;
+  }
+
   [id*="divResults"] {
     width: 80vw;
   }
   #divEntry {
+    width: 90vw;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     white-space: normal;
-    width: 80vw;
+    margin-top: 0;
   }
   #resultsGrid {
+    width: 90vw;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
   }
 }
