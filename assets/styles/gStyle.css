@@ -112,6 +112,11 @@ button {
   margin-bottom: 2vh;
 }
 
+button.btn-info {
+  background: linear-gradient(to right, #4aacbbda, #0cacc5ed);
+  border-color: transparent;
+}
+
 .form-control.result-output,
 input.form-control {
   border: 0.15rem solid #ced4da9d;

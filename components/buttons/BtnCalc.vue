@@ -10,5 +10,14 @@
 <style scoped>
   #btnCalcValues {
     margin-bottom: 2rem;
+    font-weight: 700;
+    transition: transform 0.2s ease-in-out;
+    transform: translate(0, 0);
+  }
+  #btnCalcValues:hover {
+    transform: translate(0, -0.1rem);
+  }
+  #btnCalcValues:active {
+    transform: translate(0, 0rem);
   }
 </style>
