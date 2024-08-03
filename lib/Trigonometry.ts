@@ -71,6 +71,149 @@ export function triangleLegs(a: number = 0, b: number = 0): [number, number] {
   return [Math.sqrt(hyp ** 2 - b ** 2), Math.sqrt(hyp ** 2 - a ** 2)];
 }
 
+export function sineAsConfunction(a: number = 0): number {
+  return Math.sin(Math.PI / 2 - a);
+}
+
+export function cosineAsCofunction(a: number = 0): number {
+  return Math.cos(Math.PI / 2 - a);
+}
+
+export function tangentAsCofunction(a: number = 0): number {
+  return Math.tan(Math.PI / 2 - a);
+}
+
+export function cosecantAsCofunction(a: number = 0): number {
+  return cosecant(Math.PI / 2 - a);
+}
+
+export function secantAsCofunction(a: number = 0): number {
+  return secant(Math.PI / 2 - a);
+}
+
+export function cotangentAsConfunction(a: number = 0): number {
+  return cotangent(Math.PI / 2 - a);
+}
+
+export function sineWithPythagoreanIdentity(a: number = 0): number {
+  return Math.sqrt(1 - Math.cos(a) ** 2);
+}
+
+export function cosineWithPythagoreanIdentity(a: number = 0): number {
+  return Math.sqrt(1 - Math.sin(a) ** 2);
+}
+
+export function tangentWithPythagoreanIdentity(a: number = 0): number {
+  return Math.sqrt(secant(a) ** 2 - 1);
+}
+
+export function secantWithPythagoreanIdentity(a: number = 0): number {
+  return Math.sqrt(Math.tan(a) ** 2 + 1);
+}
+
+export function cotangentWithPythagoreanIdentity(a: number = 0): number {
+  return Math.sqrt(cosecant(a) ** 2 - 1);
+}
+
+export function cosecantWithPythagoreanIdentity(a: number = 0): number {
+  return Math.sqrt(cotangent(a) ** 2 + 1);
+}
+
+export function lawOfSines(
+  a: number = 0,
+  A: number = 0,
+  B: number = 0,
+): number {
+  return (a * Math.sin(B)) / Math.sin(A);
+}
+
+export function lawOfCosines(a: number, b: number, ang: number): number {
+  return a ** 2 + b ** 2 - 2 * a * b * Math.cos(ang);
+}
+
+export function halvedAngledSine(a: number = 0): number {
+  return Math.sqrt((1 - Math.cos(a)) / 2);
+}
+
+export function halvedAngledCosine(a: number = 0): number {
+  return Math.sqrt((1 + Math.sin(a)) / 2);
+}
+
+export function halvedAngleTangent(a: number = 0): number {
+  return Math.sqrt((1 - Math.cos(a)) / (1 + Math.cos(a)));
+}
+
+export function doubledAngleSine(a: number = 0): number {
+  return 2 * Math.sin(a) * Math.cos(a);
+}
+
+export function doubleAngledCosine(a: number): number {
+  return Math.cos(a) ** 2 - Math.sin(a) ** 2;
+}
+
+export function doubleAngledTangent(a: number): number {
+  return (2 * Math.tan(a)) / (1 - Math.tan(a) ** 2);
+}
+
+export function tripleAngleSine(a: number = 0): number {
+  return 3 * Math.sin(a) - 4 * Math.sin(a) ** 3;
+}
+
+export function tripleAngleCosine(a: number = 0): number {
+  return 4 * Math.cos(a) ** 3 - 3 * Math.cos(a);
+}
+
+export function tripleAngleTangent(a: number = 0): number {
+  return (3 * Math.tan(a) - Math.tan(a) ** 3) / (1 - 3 * Math.tan(a) ** 2);
+}
+
+export function sineForUnitedAngles(
+  subt: boolean = false,
+  a: number = 0,
+  b: number = 0,
+): number {
+  const op = subt ? 1 : -1;
+  return Math.sin(a) * Math.cos(b) + op * Math.cos(a) * Math.sin(b);
+}
+
+export const sineForAddedAngles = (a: number = 0, b: number = 0): number =>
+  sineForUnitedAngles(false, a, b);
+
+export const sineForSubtractedAngles = (a: number = 0, b: number = 0): number =>
+  sineForUnitedAngles(true, a, b);
+
+export function cosineForUnitedAngles(
+  subt: boolean = false,
+  a: number = 0,
+  b: number = 0,
+): number {
+  const op = subt ? -1 : 1;
+  return Math.cos(a) * Math.cos(b) + op * Math.sin(a) * Math.sin(b);
+}
+
+export const cosineForAddedAngles = (a: number = 0, b: number = 0): number =>
+  cosineForUnitedAngles(false, a, b);
+
+export const cosineForSubtractedAngles = (a: number, b: number): number =>
+  cosineForUnitedAngles(true, a, b);
+
+export function tangentForUnitedAngles(
+  subt: boolean = false,
+  a: number = 0,
+  b: number = 0,
+): number {
+  const op = subt ? 1 : -1;
+  return (
+    (Math.tan(a) + op * Math.tan(b)) / (1 * op - Math.tan(a) * Math.tan(b))
+  );
+}
+
+export const tangentForAddedAngles = (a: number = 0, b: number = 0): number =>
+  tangentForUnitedAngles(false, a, b);
+
+export const tangentForSubtractedAngles = (a: number, b: number = 0): number =>
+  tangentForUnitedAngles(true, a, b);
+
 export class Trigonometry {
   static sec(A: number): number {
     return 1 / Math.cos(A);

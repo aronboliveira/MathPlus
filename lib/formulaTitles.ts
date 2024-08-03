@@ -1,3 +1,10 @@
+import {
+  AlgebraFormulaNamesReg,
+  CombinationsTypesReg,
+  StatisticsFormulaNamesReg,
+  TrigonometryFormulaNamesReg,
+} from "./declarations/types";
+
 export const titlesAlgebra = [
   "Linear Formula",
   "Discriminant",
@@ -12,7 +19,7 @@ export const titlesAlgebra = [
   "Common Difference of Geometric Series",
   "Sum of Geometric Series",
   "Binominal Theorem",
-];
+] as AlgebraFormulaNamesReg[];
 export const titlesCombinatorics = [
   "Permutation without Repetition",
   "Circular Permutation",
@@ -21,7 +28,7 @@ export const titlesCombinatorics = [
   "Distinct Permutation with Repetition",
   "Combination without Repetition",
   "Combination with Repetition",
-];
+] as CombinationsTypesReg[];
 export const titlesStatistics = [
   "Arithmetic Mean",
   "Harmonic Mean",
@@ -52,7 +59,7 @@ export const titlesStatistics = [
   "Pearson's Assymetry Index",
   "Person's Correlation Test",
   "Pearson's Test",
-];
+] as StatisticsFormulaNamesReg[];
 export const titlesProbability = [
   "Simple Probability",
   "Addition Rule",
@@ -63,17 +70,56 @@ export const titlesProbability = [
   "Poisson Distribution",
 ];
 export const titlesTrigonometry = [
-  "Pythagorean Identity",
-  "Sine Rule",
-  "Cosine Rule",
-  "Tangent Function",
-  "Sum of Angles",
-  "Difference of Angles",
-  "Double Angle (Sine)",
-  "Double Angle(Cosine)",
-  "Law of Sines",
-  "Law of Cosines",
-];
+  "Sine",
+  "Cosine",
+  "Tangent",
+  "Secant",
+  "Cosecant",
+  "Cotangent",
+  "Sine Angle",
+  "Cosine Angle",
+  "Tangent Angle",
+  "Hyperbolic Sine",
+  "Hyperbolic Cosine",
+  "Hyperbolic Tangent",
+  "Angle Of Hyperbolic Sine",
+  "Angle Of Hyperbolic Cosine",
+  "Angle Of Hyperbolic Tangent",
+  "Point Of Tangent Angle",
+  "Hypotenuse",
+  "Triangle Legs",
+  "Sine As Cofunction",
+  "Cosine As Cofunction",
+  "Tangent As Cofunction",
+  "Secant As Cofunction",
+  "Cotangent As Cofunction",
+  "Sine With Pythagorean Identity",
+  "Cosine With Pythagorean Identity",
+  "Tangent With Pythagorean Identity",
+  "Secant With Pythagorean Identity",
+  "Cotangent With Pythagorean Identity",
+  "Cosecant With Pythagorean Identity",
+  "Law Of Sines",
+  "Law Of Cosines",
+  "Halved Angled Sine",
+  "Halved Angled Cosine",
+  "Halved Angle Tangent",
+  "Double Angled Sine",
+  "Double Angled Cosine",
+  "Double Angled Tangent",
+  "Triple Angled Sine",
+  "Triple Angled Cosine",
+  "Triple Angled Tangent",
+  "Sine For United Angles",
+  "Sine For Added Angles",
+  "Sine For Subtracted Angles",
+  "Cosine For United Angles",
+  "Cosine For Added Angles",
+  "Cosine For Subtracted Angles",
+  "Tangent For United Angles",
+  "Tangent For Added Angles",
+  "Tangent For Subtracted Angles",
+] as TrigonometryFormulaNamesReg[];
 export const titlesGeometry = ["Square Area", "Square Volume"];
 export const first50Primes = [
   2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,

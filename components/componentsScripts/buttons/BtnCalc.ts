@@ -10,6 +10,7 @@ import * as Algebra from "../../../lib/Algebra";
 import * as Combinatorics from "../../../lib/Combinator";
 import * as Statistics from "../../../lib/Statistics";
 import * as Trigonometry from "../../../lib/Trigonometry";
+import * as Geometry from "../../../lib/Geometry";
 import {
   regularToCamel,
   symbolizeInfinite,
@@ -229,11 +230,21 @@ export const BtnCalc = (() =>
                         `Validation of Formula to Operate`,
                         ["function"],
                       );
-                    oprtTarg.innerText =
-                      symbolizeInfinite(
-                        Trigonometry[`${formulaToOperateFunc.name}`](),
-                      ) ??
-                      `Unable to calculate result for ${formulaToOperateFunc.name}`;
+                    if (/foradded|forsubtracted/gi.test(formula)) {
+                      const subt = /subtracted/gi.test(formula) ? true : false;
+                      const replacedFormula: trigonometryFormulaNames =
+                        formula.replace(/added|subtracted/gi, "United");
+                      oprtTarg.innerText =
+                        symbolizeInfinite(
+                          Trigonometry[`${replacedFormula}`](subt),
+                        ) ??
+                        `Unable to calculate result for ${formulaToOperateFunc.name}`;
+                    } else
+                      oprtTarg.innerText =
+                        symbolizeInfinite(
+                          Trigonometry[`${formulaToOperateFunc.name}`](),
+                        ) ??
+                        `Unable to calculate result for ${formulaToOperateFunc.name}`;
                   }
                 } catch (e) {
                   console.error(
