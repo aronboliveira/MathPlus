@@ -132,7 +132,8 @@ export type urlCases =
   | "Probability"
   | "Combinatorics"
   | "Trigonometry"
-  | "Geometry";
+  | "Geometry"
+  | "";
 export type algebraFormulaNames =
   | "linearFormula"
   | "discriminant"
@@ -148,3 +149,15 @@ export type algebraFormulaNames =
   | "commonDifferenceOfGeometricSeries"
   | "sumOfGeometricSeries";
 export type combinatoricsFormulaNames = "permutation" | "multisetPermutation";
+export type statisticsFormulaNames =
+  | "arithmeticMean"
+  | "harmonicMean"
+  | "geometricMean"
+  | "median"
+  | "mode"
+  | "arithmeticVariance"
+  | "geometricVariance"
+  | "covariance"
+  | "arithmeticStandardDeviation"
+  | "geometricStandardDeviation"
+  | "coefficientOfCorrelation";

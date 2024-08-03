@@ -29,6 +29,22 @@ export function median(...ns: number[]): number {
   return Number.isFinite(res) ? res : 0;
 }
 
+export function mode(...ns: number[]): [number, number] | string {
+  const ocurrences: Map<number, number> = new Map();
+  for (const value of ns)
+    ocurrences.set(value, (ocurrences.get(value) || 0) + 1);
+  const numOcurrences: number[] = Array.from(ocurrences.entries()).map<number>(
+    entry => entry[1],
+  );
+  const filteredOcurrences = Array.from(ocurrences.entries()).filter(entry => {
+    return numOcurrences.some(numOcurrence => numOcurrence !== entry[1]);
+  });
+  let maxOcurrence: [number, number] = [0, 0];
+  for (const [value, count] of filteredOcurrences)
+    count > maxOcurrence[1] && (maxOcurrence = [value, count]);
+  return !(maxOcurrence[1] === 0) ? maxOcurrence : "Não há moda definida";
+}
+
 export function arithmeticVariance(...ns: number[]): number {
   if (ns.length === 0) return 0;
   const mean = arithmeticMean(...ns);

@@ -8,10 +8,12 @@ import {
 import * as Formulas from "../../../lib/formulaTitles";
 import * as Algebra from "../../../lib/Algebra";
 import * as Combinatorics from "../../../lib/Combinator";
+import * as Statistics from "../../../lib/Statistics";
 import { regularToCamel } from "../../../lib/handlers/handlersModel";
 import {
   algebraFormulaNames,
-  combinatoricsFormulaNames,
+  statisticsFormulaNames,
+  urlCases,
 } from "../../../lib/declarations/types";
 
 export const BtnCalc = (() =>
@@ -35,7 +37,7 @@ export const BtnCalc = (() =>
             throw new Error(
               `Failed to fetch Operations List in Button dataset`,
             );
-          let urlCase = "";
+          let urlCase: urlCases = "";
           if (/algebra/gi.test(location.search)) urlCase = "Algebra";
           else if (/statistic/gi.test(location.search)) urlCase = "Statistics";
           else if (/probabil/gi.test(location.search)) urlCase = "Probability";
@@ -224,6 +226,40 @@ export const BtnCalc = (() =>
                     } else if (formula === "multisetPermutation")
                       oprtTarg.innerText = `${Combinatorics.multisetPermutation()}`;
                     else stringError(formula, "/permutation/g");
+                  } else if (urlCase === "Statistics") {
+                    const formulaToOperateFunc =
+                      Statistics[`${regularToCamel(formula)}`];
+
+                    if (typeof formulaToOperateFunc !== "function")
+                      throw typeError(
+                        formulaToOperateFunc,
+                        `Validation of Formula to Operate`,
+                        ["function"],
+                      );
+                    const formulaToOperate: statisticsFormulaNames =
+                      formulaToOperateFunc.name;
+                    if (formulaToOperate === "arithmeticMean")
+                      oprtTarg.innerText = `${Statistics.arithmeticMean()}`;
+                    else if (formulaToOperate === "harmonicMean")
+                      oprtTarg.innerText = `${Statistics.harmonicMean()}`;
+                    else if (formulaToOperate === "geometricMean")
+                      oprtTarg.innerText = `${Statistics.geometricMean()}`;
+                    else if (formulaToOperate === "median")
+                      oprtTarg.innerText = `${Statistics.median()}`;
+                    else if (formulaToOperate === "mode")
+                      oprtTarg.innerText = `${Statistics.mode()}`;
+                    else if (formulaToOperate === "arithmeticVariance")
+                      oprtTarg.innerText = `${Statistics.arithmeticVariance()}`;
+                    else if (formulaToOperate === "arithmeticStandardDeviation")
+                      oprtTarg.innerText = `${Statistics.arithmeticStandardDeviation()}`;
+                    else if (formulaToOperate === "coefficientOfCorrelation")
+                      oprtTarg.innerText = `${Statistics.coefficientOfVariation()}`;
+                    else if (formulaToOperate === "covariance")
+                      oprtTarg.innerText = `${Statistics.covariance([], [])}`;
+                    else if (formulaToOperate === "geometricVariance")
+                      oprtTarg.innerText = `${Statistics.geometricVariance()}`;
+                    else if (formulaToOperate === "geometricStandardDeviation")
+                      oprtTarg.innerText = `${Statistics.geometricStandardDeviation()}`;
                   }
                 } catch (e) {
                   console.error(
