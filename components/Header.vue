@@ -63,6 +63,7 @@
     padding-block: 0.3rem;
     position: sticky;
     top: 0;
+    z-index: 10;
   }
   header .biBtn {
     color: rgba(223, 221, 221, 0.745);

@@ -150,13 +150,25 @@ export function binomialTheorem(
   return Number.isFinite(res) ? res : 0;
 }
 
+export function applyAsDiffMean(r: number = 0, n: number = 0): number {
+  if (n <= 0) return 0;
+  const res = r / (n - 1);
+  return Number.isFinite(res) ? res : 0;
+}
+
+export function applyAsDivMean(r: number = 0, n: number = 0): number {
+  if (n <= 0) return 0;
+  const res = r ** (n - 1);
+  return Number.isFinite(res) ? res : 0;
+}
+
 export function commonDifferenceOfArithmeticSeries(
   a1: number = 0,
   an: number = 0,
   n: number = 0,
 ) {
   if (n <= 0) return 0;
-  const res = (an - a1) / (n - 1);
+  const res = applyAsDiffMean(an - a1, n);
   return Number.isFinite(res) ? res : 0;
 }
 
@@ -166,7 +178,8 @@ export function sumOfArithmeticSeries(
   n: number = 0,
 ): number {
   if (n <= 0) return 0;
-  return (an + a1) * n * 0.5;
+  const res = (an + a1) * (n / 2);
+  return Number.isFinite(res) ? res : 0;
 }
 
 export function commonDifferenceOfGeometricSeries(
@@ -175,7 +188,7 @@ export function commonDifferenceOfGeometricSeries(
   r: number = 0,
 ) {
   if (n <= 0) return 0;
-  const res = a1 * r ** (n - 1);
+  const res = a1 * applyAsDivMean(r, n);
   return Number.isFinite(res) ? res : 0;
 }
 
@@ -191,7 +204,7 @@ export function sumOfGeometricSeries(
       ? a1 / (1 - r)
       : r === 1
       ? (a1 * (1 - r ** n)) / (1 - r)
-      : (a1 * (r ** n - 1)) / (r - 1);
+      : (a1 * applyAsDivMean(r, n)) / (r - 1);
   })();
   return Number.isFinite(res) ? res : 0;
 }

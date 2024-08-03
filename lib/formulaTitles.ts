@@ -22,15 +22,6 @@ export const titlesCombinatorics = [
   "Combination without Repetition",
   "Combination with Repetition",
 ];
-export const titlesProbability = [
-  "Simple Probability",
-  "Addition Rule",
-  "Multiplication Rule",
-  "Bayes' Theorem",
-  "Expected Value",
-  "Binominal Distribution",
-  "Poisson Distribution",
-];
 export const titlesStatistics = [
   "Arithmetic Mean",
   "Harmonic Mean",
@@ -39,10 +30,10 @@ export const titlesStatistics = [
   "Mode",
   "Arithmetic Variance",
   "Geometric Variance",
+  "Covariance",
   "Arithmetic Standard Deviation",
   "Geometric Standard Deviation",
-  "Covariance",
-  "Correlation Coefficient",
+  "Coefficient of Correlation",
   "Z-score",
   "Regression Line",
   "First Quartil",
@@ -61,6 +52,15 @@ export const titlesStatistics = [
   "Pearson's Assymetry Index",
   "Person's Correlation Test",
   "Pearson's Test",
+];
+export const titlesProbability = [
+  "Simple Probability",
+  "Addition Rule",
+  "Multiplication Rule",
+  "Bayes' Theorem",
+  "Expected Value",
+  "Binominal Distribution",
+  "Poisson Distribution",
 ];
 export const titlesTrigonometry = [
   "Pythagorean Identity",

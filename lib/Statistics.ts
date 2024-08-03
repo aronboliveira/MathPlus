@@ -1,3 +1,91 @@
+import { applyAsDiffMean } from "./Algebra";
+
+export function arithmeticMean(...ns: number[]): number {
+  if (ns.length === 0) return 0;
+  const res = ns.reduce((sumt, cur) => (sumt += cur), 0) / ns.length;
+  return Number.isFinite(res) ? res : 0;
+}
+
+export function harmonicMean(...ns: number[]): number {
+  if (ns.length === 0) return 0;
+  const res = ns.length / ns.reduce((sumt, cur) => (sumt += 1 / cur), 0);
+  return Number.isFinite(res) ? res : 0;
+}
+
+export function geometricMean(...ns: number[]): number {
+  if (ns.length === 0) return 0;
+  const res = ns.reduce((sumt, cur) => (sumt *= cur), 1) ** (1 / ns.length);
+  return Number.isFinite(res) ? res : 0;
+}
+
+export function median(...ns: number[]): number {
+  if (ns.length === 0) return 0;
+  ns = ns.sort((a, b) => a - b);
+  const middleIndex = Math.floor(ns.length / 2);
+  const res =
+    ns.length % 2 === 1
+      ? ns[middleIndex]
+      : (ns[middleIndex - 1] + ns[middleIndex]) / 2;
+  return Number.isFinite(res) ? res : 0;
+}
+
+export function arithmeticVariance(...ns: number[]): number {
+  if (ns.length === 0) return 0;
+  const mean = arithmeticMean(...ns);
+  const res = applyAsDiffMean(
+    ns.reduce((sumt, cur) => (sumt += (cur - mean) ** 2)),
+    ns.length,
+  );
+  return Number.isFinite(res) ? res : 0;
+}
+
+export function arithmeticStandardDeviation(...ns: number[]): number {
+  if (ns.length === 0) return 0;
+  const res = Math.sqrt(arithmeticVariance(...ns));
+  return Number.isFinite(res) ? res : 0;
+}
+
+export function geometricStandardDeviation(...ns: number[]): number {
+  if (ns.length === 0) return 0;
+  const GA = geometricMean(...ns);
+  const res = Math.sqrt(
+    ns.reduce((sumt, cur) => (sumt += (Math.log(cur) - Math.log(GA)) ** 2), 0) /
+      ns.length,
+  );
+  return !Number.isFinite(res) ? res : 0;
+}
+
+export function geometricVariance(...ns: number[]): number {
+  if (ns.length === 0) return 0;
+  const res = geometricStandardDeviation(...ns) ** 2;
+  return Number.isFinite(res) ? res : 0;
+}
+
+export function covariance(ns1: number[], ns2: number[]): number {
+  if (ns1.length === 0 || ns2.length === 0) return 0;
+  if (ns1.length !== ns2.length) {
+    ns1.length > ns2.length
+      ? (ns1 = ns1.slice(0, ns2.length))
+      : (ns2 = ns2.slice(0, ns1.length));
+  }
+  const ns1Mean = arithmeticMean(...ns1);
+  const ns2Mean = arithmeticMean(...ns2);
+  const res = applyAsDiffMean(
+    ns1.reduce(
+      (sumt, _, i) => (sumt += (ns1[i] - ns1Mean) * (ns2[i] - ns2Mean)),
+      0,
+    ),
+    ns1.length,
+  );
+  return Number.isFinite(res) ? res : 0;
+}
+
+export function coefficientOfVariation(...ns: number[]): number {
+  if (ns.length === 0) return 0;
+  const res = arithmeticStandardDeviation(...ns) / arithmeticMean(...ns);
+  return Number.isFinite(res) ? res : 0;
+}
+
 export class Statistic {
   values: number[];
   constructor(values: number[]) {
@@ -40,8 +128,8 @@ export class Statistic {
     let result = Math.sqrt(
       this.values.reduce(
         (sumt, cur) => (sumt += (Math.log(cur) - Math.log(AG)) ** 2),
-        0
-      ) / this.values.length
+        0,
+      ) / this.values.length,
     );
     if (!Number.isFinite(result)) result = 0;
     return result;
@@ -58,13 +146,13 @@ export class Statistic {
     for (const value of this.values)
       ocurrences.set(value, (ocurrences.get(value) || 0) + 1);
     const numOcurrences: number[] = Array.from(
-      ocurrences.entries()
-    ).map<number>((entry) => entry[1]);
+      ocurrences.entries(),
+    ).map<number>(entry => entry[1]);
     const filteredOcurrences: Array<[number, number]> = Array.from<
       [number, number]
-    >(ocurrences.entries()).filter((entry) => {
+    >(ocurrences.entries()).filter(entry => {
       console.log(entry[1]);
-      return numOcurrences.some((numOcurrence) => numOcurrence !== entry[1]);
+      return numOcurrences.some(numOcurrence => numOcurrence !== entry[1]);
     });
     console.log(numOcurrences);
     console.log(filteredOcurrences);
@@ -82,7 +170,7 @@ export class Statistic {
     [number, number],
     [number, number[]],
     [number, number[]],
-    number
+    number,
   ] {
     this.values = this.values.sort((a, b) => a - b);
     const q1i = (this.values.length + 1) * 0.25;
@@ -98,8 +186,8 @@ export class Statistic {
       [q1i, q1],
       [q2i, q2],
       [q3i, q3],
-      [lowWhisk, this.values.filter((value) => value < lowWhisk)],
-      [upWhisk, this.values.filter((value) => value > upWhisk)],
+      [lowWhisk, this.values.filter(value => value < lowWhisk)],
+      [upWhisk, this.values.filter(value => value > upWhisk)],
       iqr,
     ];
   }
@@ -124,12 +212,12 @@ export class Statistic {
           (x.reduce((sumt, cur) => (sumt += cur ** 2), 0) -
             sumtX ** 2 / x.length) *
             (y.reduce((sumt, cur) => (sumt += cur ** 2), 0) -
-              sumtY ** 2 / x.length)
+              sumtY ** 2 / x.length),
         )
       );
     } else {
       console.error(
-        `Erro no comprimento de conjuntos calculando o Índice de correlação de Pearson`
+        `Erro no comprimento de conjuntos calculando o Índice de correlação de Pearson`,
       );
       return `Conjuntos devem ter o mesmo comprimento!`;
     }
@@ -149,15 +237,13 @@ export class Statistic {
     );
   }
   intersect(A: number[], B: number[]): number[] {
-    return A.filter((x) => B.includes(x));
+    return A.filter(x => B.includes(x));
   }
   union(A: number[], B: number[]): number[] {
     const union = [...A, ...B];
     const intersect = this.intersect(A, B);
-    if (union.some((num) => intersect.includes(num))) {
-      const indexIntersecNum = union.findIndex((num) =>
-        intersect.includes(num)
-      );
+    if (union.some(num => intersect.includes(num))) {
+      const indexIntersecNum = union.findIndex(num => intersect.includes(num));
       union.splice(indexIntersecNum, 1);
     }
     return union;
@@ -177,7 +263,7 @@ export class Statistic {
     B: any,
     t: any[],
     dep: boolean = false,
-    probCond?: number
+    probCond?: number,
   ): number {
     if (dep) {
       return typeof probCond === "number"
@@ -194,14 +280,18 @@ export class Statistic {
   quiFreq(values: Array<{ ob: number; exp: number }>): number {
     return values.reduce(
       (sumt, cur) => (sumt += (cur.ob - cur.exp) ** 2 / cur.exp),
-      0
+      0,
     );
   }
   degreeQuiIndep(r: number, c: number): number {
     return (r - 1) * (c - 1);
   }
   quiIndep(
-    values: Array<{ obs: Array<number[]>; exps: Array<number[]>; cols: number }>
+    values: Array<{
+      obs: Array<number[]>;
+      exps: Array<number[]>;
+      cols: number;
+    }>,
   ): number {
     let sumt = 0;
     for (let r = 0; r < values.length; r++) {
