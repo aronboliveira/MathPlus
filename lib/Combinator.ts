@@ -11,14 +11,13 @@ export function permutation(
   if (k === 0) k = 1;
   k = Math.abs(Math.round(k));
   n = Math.abs(Math.round(k));
-  const res = (() =>
+  return (() =>
     (factorial(n + (allowRepetition && ignoreOrder ? k - 1 : 0)) -
       (circular ? 1 : 0)) /
     (circular
       ? 1
       : (ignoreOrder ? factorial(k) : 1) *
         factorial(n - (allowRepetition && ignoreOrder ? 1 : k))))();
-  return Number.isFinite(res) ? res : 0;
 }
 
 export function multisetPermutation(
@@ -29,8 +28,7 @@ export function multisetPermutation(
   n = Math.abs(Math.round(n));
   freqs = freqs.map(n => Math.abs(Math.round(n)));
   if (freqs.reduce((acc, n) => (acc += n), 0) > n) return 0;
-  const res = factorial(n) / freqs.reduce((acc, n) => (acc *= factorial(n)), 0);
-  return Number.isFinite(res) ? res : 0;
+  return factorial(n) / freqs.reduce((acc, n) => (acc *= factorial(n)), 0);
 }
 
 export class Combinator {

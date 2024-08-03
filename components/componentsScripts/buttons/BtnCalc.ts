@@ -9,10 +9,16 @@ import * as Formulas from "../../../lib/formulaTitles";
 import * as Algebra from "../../../lib/Algebra";
 import * as Combinatorics from "../../../lib/Combinator";
 import * as Statistics from "../../../lib/Statistics";
-import { regularToCamel } from "../../../lib/handlers/handlersModel";
+import * as Trigonometry from "../../../lib/Trigonometry";
+import {
+  regularToCamel,
+  symbolizeInfinite,
+} from "../../../lib/handlers/handlersModel";
 import {
   algebraFormulaNames,
+  combinationsTypes,
   statisticsFormulaNames,
+  trigonometryFormulaNames,
   urlCases,
 } from "../../../lib/declarations/types";
 
@@ -148,9 +154,7 @@ export const BtnCalc = (() =>
                       );
                     const formulaToOperate: algebraFormulaNames =
                       formulaToOperateFunc.name;
-                    if (formulaToOperate === "linearFormula")
-                      oprtTarg.innerText = `${Algebra.linearFormula()}`;
-                    else if (formulaToOperate === "discriminant") {
+                    if (formulaToOperate === "discriminant") {
                       oprtTarg.dataset.operation === "number_of_roots"
                         ? (oprtTarg.innerText = `${
                             Algebra.discriminant().nRoots
@@ -158,74 +162,50 @@ export const BtnCalc = (() =>
                         : (oprtTarg.innerText = `${
                             Algebra.discriminant().value
                           }`);
-                    } else if (formulaToOperate === "quadraticFormula")
-                      oprtTarg.innerText = `${Algebra.quadraticFormula()}`;
-                    else if (formulaToOperate === "cubicFormula")
-                      oprtTarg.innerText = `${Algebra.cubicFormula()}`;
-                    else if (formulaToOperate === "differenceOfSquares")
-                      oprtTarg.innerText = `${Algebra.differenceOfSquares()}`;
-                    else if (formulaToOperate === "leastCommonMultiple")
-                      oprtTarg.innerText = `${Algebra.leastCommonMultiple()}`;
-                    else if (formulaToOperate === "greatestCommonDivisor")
-                      oprtTarg.innerText = `${Algebra.greatestCommonDivisor()}`;
-                    else if (formulaToOperate === "binominalTheorem")
-                      oprtTarg.innerText = `${Algebra.binomialTheorem()}`;
-                    else if (
-                      formulaToOperate === "commonDifferenceOfArithmeticSeries"
-                    )
-                      oprtTarg.innerText = `${Algebra.commonDifferenceOfArithmeticSeries()}`;
-                    else if (formulaToOperate === "sumOfArithmeticSeries")
-                      oprtTarg.innerText = `${Algebra.sumOfArithmeticSeries()}`;
-                    else if (
-                      formulaToOperate === "commonDifferenceOfGeometricSeries"
-                    )
-                      oprtTarg.innerText = `${Algebra.commonDifferenceOfGeometricSeries()}`;
-                    else if (formulaToOperate === "sumOfGeometricSeries") {
-                      oprtTarg.innerText = `${Algebra.sumOfGeometricSeries()}`;
-                    }
+                    } else
+                      oprtTarg.innerText =
+                        symbolizeInfinite(Algebra[`${formulaToOperate}`]()) ??
+                        `Unable to calculate result for ${formulaToOperate}`;
                   } else if (urlCase === "Combinatorics") {
-                    console.log("Searching " + formula + "in Combinatorics...");
-                    formula = regularToCamel(formula);
-                    if (!/multiset/gi.test(formula)) {
-                      if (formula === "permutationWithoutRepetition")
-                        oprtTarg.innerText = `${Combinatorics.permutation()}`;
-                      if (formula === "circularPermutation")
-                        oprtTarg.innerText = `${Combinatorics.permutation(
-                          0,
-                          0,
-                          true,
-                        )}`;
-                      if (formula === "distinctPermutationWithoutRepetition")
-                        oprtTarg.innerText = `${Combinatorics.permutation(
-                          0,
-                          1,
-                        )}`;
-                      if (formula === "distinctPermutationWithRepetition")
-                        oprtTarg.innerText = `${Combinatorics.permutation(
-                          0,
-                          0,
-                          false,
-                          false,
-                          true,
-                        )}`;
-                      if (formula === "combinationWithoutRepetition")
-                        oprtTarg.innerText = `${Combinatorics.permutation(
-                          0,
-                          0,
-                          false,
-                          true,
-                        )}`;
-                      if (formula === "combinationWithRepetition")
-                        oprtTarg.innerText = `${Combinatorics.permutation(
-                          0,
-                          0,
-                          false,
-                          true,
-                          true,
-                        )}`;
+                    const specificFormula: combinationsTypes = regularToCamel(
+                      formula,
+                    ) as combinationsTypes;
+                    if (!/multiset/gi.test(specificFormula)) {
+                      if (specificFormula === "permutationWithoutRepetition")
+                        oprtTarg.innerText = symbolizeInfinite(
+                          Combinatorics.permutation(),
+                        );
+                      if (specificFormula === "circularPermutation")
+                        oprtTarg.innerText = symbolizeInfinite(
+                          Combinatorics.permutation(0, 0, true),
+                        );
+                      if (
+                        specificFormula ===
+                        "distinctPermutationWithoutRepetition"
+                      )
+                        oprtTarg.innerText = symbolizeInfinite(
+                          Combinatorics.permutation(0, 1),
+                        );
+                      if (
+                        specificFormula === "distinctPermutationWithRepetition"
+                      )
+                        oprtTarg.innerText = symbolizeInfinite(
+                          Combinatorics.permutation(0, 0, false, false, true),
+                        );
+                      if (specificFormula === "combinationWithoutRepetition")
+                        oprtTarg.innerText = symbolizeInfinite(
+                          Combinatorics.permutation(0, 0, false, true),
+                        );
+                      if (specificFormula === "combinationWithRepetition")
+                        oprtTarg.innerText = symbolizeInfinite(
+                          Combinatorics.permutation(0, 0, false, true, true),
+                        );
                     } else if (formula === "multisetPermutation")
-                      oprtTarg.innerText = `${Combinatorics.multisetPermutation()}`;
-                    else stringError(formula, "/permutation/g");
+                      oprtTarg.innerText = symbolizeInfinite(
+                        Combinatorics.multisetPermutation(),
+                      );
+                    else
+                      oprtTarg.innerText = `Unable to calculate result for ${formula}`;
                   } else if (urlCase === "Statistics") {
                     const formulaToOperateFunc =
                       Statistics[`${regularToCamel(formula)}`];
@@ -236,30 +216,24 @@ export const BtnCalc = (() =>
                         `Validation of Formula to Operate`,
                         ["function"],
                       );
-                    const formulaToOperate: statisticsFormulaNames =
-                      formulaToOperateFunc.name;
-                    if (formulaToOperate === "arithmeticMean")
-                      oprtTarg.innerText = `${Statistics.arithmeticMean()}`;
-                    else if (formulaToOperate === "harmonicMean")
-                      oprtTarg.innerText = `${Statistics.harmonicMean()}`;
-                    else if (formulaToOperate === "geometricMean")
-                      oprtTarg.innerText = `${Statistics.geometricMean()}`;
-                    else if (formulaToOperate === "median")
-                      oprtTarg.innerText = `${Statistics.median()}`;
-                    else if (formulaToOperate === "mode")
-                      oprtTarg.innerText = `${Statistics.mode()}`;
-                    else if (formulaToOperate === "arithmeticVariance")
-                      oprtTarg.innerText = `${Statistics.arithmeticVariance()}`;
-                    else if (formulaToOperate === "arithmeticStandardDeviation")
-                      oprtTarg.innerText = `${Statistics.arithmeticStandardDeviation()}`;
-                    else if (formulaToOperate === "coefficientOfCorrelation")
-                      oprtTarg.innerText = `${Statistics.coefficientOfVariation()}`;
-                    else if (formulaToOperate === "covariance")
-                      oprtTarg.innerText = `${Statistics.covariance([], [])}`;
-                    else if (formulaToOperate === "geometricVariance")
-                      oprtTarg.innerText = `${Statistics.geometricVariance()}`;
-                    else if (formulaToOperate === "geometricStandardDeviation")
-                      oprtTarg.innerText = `${Statistics.geometricStandardDeviation()}`;
+                    oprtTarg.innerText =
+                      symbolizeInfinite(
+                        Statistics[`${formulaToOperateFunc.name}`](),
+                      ) ?? `Unable to calculate result for ${formula}`;
+                  } else if (urlCase === "Trigonometry") {
+                    const formulaToOperateFunc =
+                      Trigonometry[`${regularToCamel(formula)}`];
+                    if (typeof formulaToOperateFunc !== "function")
+                      throw typeError(
+                        formulaToOperateFunc,
+                        `Validation of Formula to Operate`,
+                        ["function"],
+                      );
+                    oprtTarg.innerText =
+                      symbolizeInfinite(
+                        Trigonometry[`${formulaToOperateFunc.name}`](),
+                      ) ??
+                      `Unable to calculate result for ${formulaToOperateFunc.name}`;
                   }
                 } catch (e) {
                   console.error(

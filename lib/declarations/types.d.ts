@@ -149,6 +149,13 @@ export type algebraFormulaNames =
   | "commonDifferenceOfGeometricSeries"
   | "sumOfGeometricSeries";
 export type combinatoricsFormulaNames = "permutation" | "multisetPermutation";
+export type combinationsTypes =
+  | "permutationWithoutRepetition"
+  | "circularPermutation"
+  | "distinctPermutationWithoutRepetition"
+  | "distinctPermutationWithRepetition"
+  | "combinationWithoutRepetition"
+  | "combinationWithRepetition";
 export type statisticsFormulaNames =
   | "arithmeticMean"
   | "harmonicMean"
@@ -161,3 +168,22 @@ export type statisticsFormulaNames =
   | "arithmeticStandardDeviation"
   | "geometricStandardDeviation"
   | "coefficientOfCorrelation";
+export type trigonometryFormulaNames =
+  | "sine"
+  | "cosine"
+  | "tangent"
+  | "secant"
+  | "cosecant"
+  | "contangent"
+  | "sineAngle"
+  | "cosineAngle"
+  | "tangentAngle"
+  | "hyperbolicSine"
+  | "hyperbolicCosine"
+  | "hyperbolicTangent"
+  | "angleOfHyperbolicSine"
+  | "angleOfHyperbolicCosine"
+  | "angleOfHyperbolicTangent"
+  | "pointOfTangentAngle"
+  | "hypotenuse"
+  | "triangleLegs";

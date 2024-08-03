@@ -1,3 +1,76 @@
+export function sine(n: number = 0): number {
+  return Math.sin(n);
+}
+
+export function cosine(n: number = 0): number {
+  return Math.cos(n);
+}
+
+export function tangent(n: number = 0): number {
+  return Math.tan(n);
+}
+
+export function cosecant(n: number = 0): number {
+  return 1 / Math.sin(n);
+}
+
+export function secant(n: number = 0): number {
+  return 1 / Math.cos(n);
+}
+
+export function cotangent(n: number = 0): number {
+  return 1 / Math.tan(n);
+}
+
+export function sineAngle(n: number = 0): number {
+  return Math.asin(n);
+}
+
+export function cosineAngle(n: number = 0): number {
+  return Math.acos(n);
+}
+
+export function tangentAngle(n: number = 0): number {
+  return Math.atan(n);
+}
+
+export function hyperbolicSine(n: number = 0): number {
+  return Math.sinh(n);
+}
+
+export function hyperbolicCosine(n: number = 0): number {
+  return Math.cosh(n);
+}
+
+export function hyperbolicTangent(n: number = 0): number {
+  return Math.tanh(n);
+}
+
+export function angleOfHyperbolicSine(n: number = 0): number {
+  return Math.asinh(n);
+}
+
+export function angleOfHyperbolicCosine(n: number = 0): number {
+  return Math.acosh(n);
+}
+
+export function angleOfHyperbolicTangent(n: number = 0): number {
+  return Math.atanh(n);
+}
+
+export function pointOfTangentAngle(x: number = 0, y: number = 0): number {
+  return Math.atan2(x, y);
+}
+
+export function hypotenuse(x: number = 0, y: number = 0): number {
+  return Math.hypot(x, y);
+}
+
+export function triangleLegs(a: number = 0, b: number = 0): [number, number] {
+  const hyp = Math.hypot(a, b);
+  return [Math.sqrt(hyp ** 2 - b ** 2), Math.sqrt(hyp ** 2 - a ** 2)];
+}
+
 export class Trigonometry {
   static sec(A: number): number {
     return 1 / Math.cos(A);
@@ -105,7 +178,7 @@ export class Trigonometry {
   static addAnglesSin(
     angA: number,
     angB: number,
-    subt: boolean = false
+    subt: boolean = false,
   ): number {
     let op = 1;
     if (subt === true) op = -1;
@@ -116,7 +189,7 @@ export class Trigonometry {
   static addAnglesCos(
     angA: number,
     angB: number,
-    subt: boolean = true
+    subt: boolean = true,
   ): number {
     let op = -1;
     if (subt === false) op = 1;

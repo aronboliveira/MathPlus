@@ -189,6 +189,18 @@ export function normalizeNumber(
   }
 }
 
+export function symbolizeInfinite(n: number = 0): string {
+  try {
+    if (Number.isFinite(n) || !n) return `${n}`;
+    return Number.isNaN(n) ? `#ERROR` : "∞";
+  } catch (e) {
+    console.error(
+      `Error executing symbolizeInfinite:\n${(e as Error).message}`,
+    );
+    return `#ERROR`;
+  }
+}
+
 export function normalizeSpacing(value: string): string {
   try {
     if (typeof value !== "string")

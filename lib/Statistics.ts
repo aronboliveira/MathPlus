@@ -1,32 +1,29 @@
 import { applyAsDiffMean } from "./Algebra";
 
+//TODO FALTAM ÍNDICES ESTATÍSTICOS GRÁFICOS
+
 export function arithmeticMean(...ns: number[]): number {
   if (ns.length === 0) return 0;
-  const res = ns.reduce((sumt, cur) => (sumt += cur), 0) / ns.length;
-  return Number.isFinite(res) ? res : 0;
+  return ns.reduce((sumt, cur) => (sumt += cur), 0) / ns.length;
 }
 
 export function harmonicMean(...ns: number[]): number {
   if (ns.length === 0) return 0;
-  const res = ns.length / ns.reduce((sumt, cur) => (sumt += 1 / cur), 0);
-  return Number.isFinite(res) ? res : 0;
+  return ns.length / ns.reduce((sumt, cur) => (sumt += 1 / cur), 0);
 }
 
 export function geometricMean(...ns: number[]): number {
   if (ns.length === 0) return 0;
-  const res = ns.reduce((sumt, cur) => (sumt *= cur), 1) ** (1 / ns.length);
-  return Number.isFinite(res) ? res : 0;
+  return ns.reduce((sumt, cur) => (sumt *= cur), 1) ** (1 / ns.length);
 }
 
 export function median(...ns: number[]): number {
   if (ns.length === 0) return 0;
   ns = ns.sort((a, b) => a - b);
   const middleIndex = Math.floor(ns.length / 2);
-  const res =
-    ns.length % 2 === 1
-      ? ns[middleIndex]
-      : (ns[middleIndex - 1] + ns[middleIndex]) / 2;
-  return Number.isFinite(res) ? res : 0;
+  return ns.length % 2 === 1
+    ? ns[middleIndex]
+    : (ns[middleIndex - 1] + ns[middleIndex]) / 2;
 }
 
 export function mode(...ns: number[]): [number, number] | string {
@@ -48,33 +45,29 @@ export function mode(...ns: number[]): [number, number] | string {
 export function arithmeticVariance(...ns: number[]): number {
   if (ns.length === 0) return 0;
   const mean = arithmeticMean(...ns);
-  const res = applyAsDiffMean(
+  return applyAsDiffMean(
     ns.reduce((sumt, cur) => (sumt += (cur - mean) ** 2)),
     ns.length,
   );
-  return Number.isFinite(res) ? res : 0;
 }
 
 export function arithmeticStandardDeviation(...ns: number[]): number {
   if (ns.length === 0) return 0;
-  const res = Math.sqrt(arithmeticVariance(...ns));
-  return Number.isFinite(res) ? res : 0;
+  return Math.sqrt(arithmeticVariance(...ns));
 }
 
 export function geometricStandardDeviation(...ns: number[]): number {
   if (ns.length === 0) return 0;
   const GA = geometricMean(...ns);
-  const res = Math.sqrt(
+  return Math.sqrt(
     ns.reduce((sumt, cur) => (sumt += (Math.log(cur) - Math.log(GA)) ** 2), 0) /
       ns.length,
   );
-  return !Number.isFinite(res) ? res : 0;
 }
 
 export function geometricVariance(...ns: number[]): number {
   if (ns.length === 0) return 0;
-  const res = geometricStandardDeviation(...ns) ** 2;
-  return Number.isFinite(res) ? res : 0;
+  return geometricStandardDeviation(...ns) ** 2;
 }
 
 export function covariance(ns1: number[], ns2: number[]): number {
@@ -86,20 +79,18 @@ export function covariance(ns1: number[], ns2: number[]): number {
   }
   const ns1Mean = arithmeticMean(...ns1);
   const ns2Mean = arithmeticMean(...ns2);
-  const res = applyAsDiffMean(
+  return applyAsDiffMean(
     ns1.reduce(
       (sumt, _, i) => (sumt += (ns1[i] - ns1Mean) * (ns2[i] - ns2Mean)),
       0,
     ),
     ns1.length,
   );
-  return Number.isFinite(res) ? res : 0;
 }
 
 export function coefficientOfVariation(...ns: number[]): number {
   if (ns.length === 0) return 0;
-  const res = arithmeticStandardDeviation(...ns) / arithmeticMean(...ns);
-  return Number.isFinite(res) ? res : 0;
+  return arithmeticStandardDeviation(...ns) / arithmeticMean(...ns);
 }
 
 export class Statistic {
