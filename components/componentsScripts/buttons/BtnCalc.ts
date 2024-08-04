@@ -18,7 +18,6 @@ import {
 import {
   algebraFormulaNames,
   combinationsTypes,
-  statisticsFormulaNames,
   trigonometryFormulaNames,
   urlCases,
 } from "../../../lib/declarations/types";
@@ -219,7 +218,7 @@ export const BtnCalc = (() =>
                       );
                     oprtTarg.innerText =
                       symbolizeInfinite(
-                        Statistics[`${formulaToOperateFunc.name}`](),
+                        Statistics[`${regularToCamel(formula)}`](),
                       ) ?? `Unable to calculate result for ${formula}`;
                   } else if (urlCase === "Trigonometry") {
                     const formulaToOperateFunc =
@@ -236,15 +235,30 @@ export const BtnCalc = (() =>
                         formula.replace(/added|subtracted/gi, "United");
                       oprtTarg.innerText =
                         symbolizeInfinite(
-                          Trigonometry[`${replacedFormula}`](subt),
+                          Trigonometry[`${regularToCamel(replacedFormula)}`](
+                            subt,
+                          ),
                         ) ??
                         `Unable to calculate result for ${formulaToOperateFunc.name}`;
                     } else
                       oprtTarg.innerText =
                         symbolizeInfinite(
-                          Trigonometry[`${formulaToOperateFunc.name}`](),
+                          Trigonometry[`${regularToCamel(formula)}`](),
                         ) ??
                         `Unable to calculate result for ${formulaToOperateFunc.name}`;
+                  } else if (urlCase === "Geometry") {
+                    const formulaToOperateFunc =
+                      Geometry[`${regularToCamel(formula)}`];
+                    if (typeof formulaToOperateFunc !== "function")
+                      throw typeError(
+                        formulaToOperateFunc,
+                        `Validation of Formula to Operate`,
+                        ["function"],
+                      );
+                    oprtTarg.innerText =
+                      symbolizeInfinite(
+                        Geometry[`${regularToCamel(formula)}`],
+                      ) ?? `Unable to calculate result for ${formula}`;
                   }
                 } catch (e) {
                   console.error(
@@ -254,6 +268,10 @@ export const BtnCalc = (() =>
                   );
                 }
               }, 1000);
+              setTimeout(() => {
+                if (/operating/gi.test(oprtTarg.innerText))
+                  oprtTarg.innerText = `#NORESULT`;
+              }, 5000);
             } catch (e) {
               console.error(
                 `Error executing iteration ${i} for loop of operations:\n${

@@ -191,7 +191,8 @@ export function normalizeNumber(
 
 export function symbolizeInfinite(n: number = 0): string {
   try {
-    if (Number.isFinite(n) || !n) return `${n}`;
+    if (!n) return `#ERROR`;
+    if (Number.isFinite(n)) return `${n}`;
     return Number.isNaN(n) ? `#ERROR` : "∞";
   } catch (e) {
     console.error(

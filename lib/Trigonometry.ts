@@ -71,7 +71,7 @@ export function triangleLegs(a: number = 0, b: number = 0): [number, number] {
   return [Math.sqrt(hyp ** 2 - b ** 2), Math.sqrt(hyp ** 2 - a ** 2)];
 }
 
-export function sineAsConfunction(a: number = 0): number {
+export function sineAsCofunction(a: number = 0): number {
   return Math.sin(Math.PI / 2 - a);
 }
 
@@ -91,7 +91,7 @@ export function secantAsCofunction(a: number = 0): number {
   return secant(Math.PI / 2 - a);
 }
 
-export function cotangentAsConfunction(a: number = 0): number {
+export function cotangentAsCofunction(a: number = 0): number {
   return cotangent(Math.PI / 2 - a);
 }
 
@@ -143,7 +143,7 @@ export function halvedAngleTangent(a: number = 0): number {
   return Math.sqrt((1 - Math.cos(a)) / (1 + Math.cos(a)));
 }
 
-export function doubledAngleSine(a: number = 0): number {
+export function doubleAngledSine(a: number = 0): number {
   return 2 * Math.sin(a) * Math.cos(a);
 }
 
@@ -155,15 +155,15 @@ export function doubleAngledTangent(a: number): number {
   return (2 * Math.tan(a)) / (1 - Math.tan(a) ** 2);
 }
 
-export function tripleAngleSine(a: number = 0): number {
+export function tripleAngledSine(a: number = 0): number {
   return 3 * Math.sin(a) - 4 * Math.sin(a) ** 3;
 }
 
-export function tripleAngleCosine(a: number = 0): number {
+export function tripleAngledCosine(a: number = 0): number {
   return 4 * Math.cos(a) ** 3 - 3 * Math.cos(a);
 }
 
-export function tripleAngleTangent(a: number = 0): number {
+export function tripleAngledTangent(a: number = 0): number {
   return (3 * Math.tan(a) - Math.tan(a) ** 3) / (1 - 3 * Math.tan(a) ** 2);
 }
 

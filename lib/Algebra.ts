@@ -145,7 +145,7 @@ export function binomialTheorem(
     if (pow_1 > 0) --pow_1;
     ++pow_2;
   }
-  return Number.isFinite(res) ? res : 0;
+  return res;
 }
 
 export function applyAsDiffMean(r: number = 0, n: number = 0): number {
